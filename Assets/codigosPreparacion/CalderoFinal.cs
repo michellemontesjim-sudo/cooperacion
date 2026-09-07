@@ -4,32 +4,35 @@ using TMPro;
 
 public class CalderoFinal : MonoBehaviour
 {
-    [Header("Recetas Disponibles en el Nivel")]
+    [Header("Recetas y Meta de Puntos")]
     public OrdenReceta[] recetasPosibles;
+    public int puntosParaGanar = 500; // Meta mínima para ganar
 
     [Header("Interfaz de Usuario (UI)")]
     public TextMeshProUGUI textoNombreOrden;
     public TextMeshProUGUI textoProcesoRequerido;
     public Image imagenIconoOrden;
     public TextMeshProUGUI textoPuntajeTotal;
+    public GameObject panelVictoriaUI; // Panel desplegable de victoria
 
     private OrdenReceta ordenActual;
     private int puntajeTotal = 0;
+    private bool juegoTerminado = false;
 
     private void Start()
     {
+        if (panelVictoriaUI != null) panelVictoriaUI.SetActive(false);
+        ActualizarTextoPuntos();
         GenerarNuevaOrden();
     }
 
     public void GenerarNuevaOrden()
     {
-        if (recetasPosibles == null || recetasPosibles.Length == 0) return;
+        if (juegoTerminado || recetasPosibles == null || recetasPosibles.Length == 0) return;
 
-        // Selecciona una receta al azar de la lista
         int randomIndex = Random.Range(0, recetasPosibles.Length);
         ordenActual = recetasPosibles[randomIndex];
 
-        // Actualizar la interfaz gráfica
         if (textoNombreOrden != null)
             textoNombreOrden.text = ordenActual.nombreReceta;
 
@@ -42,26 +45,50 @@ public class CalderoFinal : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (juegoTerminado) return;
+
         if (other.TryGetComponent<Ingrediente>(out var ingrediente))
         {
-            // Validar si el ingrediente entregado coincide con el nombre y el estado pedido
+            // Valida el nombre y el estado procesado
             if (ingrediente.nombreIngrediente == ordenActual.nombreReceta && ingrediente.estadoActual == ordenActual.estadoRequerido)
             {
                 puntajeTotal += ordenActual.puntosRecompensa;
-
-                if (textoPuntajeTotal != null)
-                    textoPuntajeTotal.text = $"Puntos: {puntajeTotal}";
-
-                Debug.Log($"¡Entrega Correcta! +{ordenActual.puntosRecompensa} Puntos.");
+                ActualizarTextoPuntos();
 
                 Destroy(other.gameObject);
-                GenerarNuevaOrden(); // Pide la siguiente orden inmediatamente
+
+                // Comprobación de Meta
+                if (puntajeTotal >= puntosParaGanar)
+                {
+                    GanarPartida();
+                }
+                else
+                {
+                    GenerarNuevaOrden();
+                }
             }
             else
             {
-                Debug.Log("Receta equivocada o proceso incompleto. Ingrediente descartado.");
+                Debug.Log("Ingrediente o proceso incorrecto. Se descartó la entrega.");
                 Destroy(other.gameObject);
             }
+        }
+    }
+
+    private void ActualizarTextoPuntos()
+    {
+        if (textoPuntajeTotal != null)
+            textoPuntajeTotal.text = $"Puntos: {puntajeTotal} / {puntosParaGanar}";
+    }
+
+    private void GanarPartida()
+    {
+        juegoTerminado = true;
+        Debug.Log("¡VICTORIA! Han completado los pedidos solicitados.");
+
+        if (panelVictoriaUI != null)
+        {
+            panelVictoriaUI.SetActive(true);
         }
     }
 }

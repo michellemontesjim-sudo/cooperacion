@@ -6,7 +6,6 @@ public class Telepatico: PlayerAlquimia
     public float alcanceTelequinesis = 6f;
     protected override void TryPickOrDrop()
     {
-
         if (holdPoint == null) return;
 
         Collider[] hits = Physics.OverlapSphere(holdPoint.position, rangoDeteccion);
@@ -37,17 +36,29 @@ public class Telepatico: PlayerAlquimia
         // -------------------------------------------------------------
         // CASO 2: TIENES LAS MANOS LIBRES
         // -------------------------------------------------------------
+
+        // PRIORIDAD 1: Estructuras (Mesas y Cajas Generadoras)
         foreach (Collider hit in hits)
         {
-            // A. Intentar tomar de una mesa ocupada
+            // A. Tomar objeto desde una mesa ocupada
             if (hit.TryGetComponent<MesaContenedora>(out var mesa) && mesa.EstaOcupada)
             {
                 heldItem = mesa.TomarObjeto();
-                AgarrarEnMano(heldItem);
+                if (heldItem != null) AgarrarEnMano(heldItem);
                 return;
             }
 
-            // B. Intentar tomar un ingrediente suelto del suelo
+            // B. Obtener un nuevo ingrediente desde un generador/caja
+            if (hit.TryGetComponent<GeneradorIngredientes>(out var generador))
+            {
+                heldItem = generador.EntregarIngrediente(holdPoint);
+                return;
+            }
+        }
+
+        // PRIORIDAD 2: Objetos e ingredientes sueltos tirados en el suelo
+        foreach (Collider hit in hits)
+        {
             if (hit.TryGetComponent<Ingrediente>(out var ingrediente))
             {
                 heldItem = ingrediente.gameObject;

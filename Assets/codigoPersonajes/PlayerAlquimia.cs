@@ -36,6 +36,15 @@ public abstract class PlayerAlquimia:MonoBehaviour
         miPanelUI = panel;
     }
 
+    protected virtual void Start()
+    {
+        // Si no se asignó un panel manualmente, lo busca en el UIManager usando su índice
+        if (miPanelUI == null && myPlayerInput != null && UIPuzzleManager.Instance != null)
+        {
+            AsignarPanelUI(UIPuzzleManager.Instance.ObtenerPanelJugador(myPlayerInput.playerIndex));
+        }
+    }
+
     // Callbacks del Input System
     public void OnMove(InputValue value) => moveInput = value.Get<Vector2>();
     public void OnInteract(InputValue value)

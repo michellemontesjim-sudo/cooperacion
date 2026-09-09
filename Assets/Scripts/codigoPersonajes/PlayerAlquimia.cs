@@ -36,6 +36,14 @@ public abstract class PlayerAlquimia:MonoBehaviour
         miPanelUI = panel;
     }
 
+    public void ConfigurarCuadranteUI(int playerIndex)
+    {
+        if (UIPuzzleManager.Instance != null)
+        {
+            miPanelUI = UIPuzzleManager.Instance.ObtenerPanelJugador(playerIndex);
+        }
+    }
+
     protected virtual void Start()
     {
         // Si no se asignó un panel manualmente, lo busca en el UIManager usando su índice
@@ -119,11 +127,48 @@ public abstract class PlayerAlquimia:MonoBehaviour
 
             minijuego.InicializarPuzzle(myPlayerInput);
         }
-        else
+        /*else
         {
             Debug.LogWarning("El minijuego instanciado carece del componente MinijuegoBase.");
             estaEnMinijuego = false;
             Destroy(puzzleObj);
+        }*/
+    }
+
+    protected void ActualizarObjetoEnMano(GameObject nuevoObjeto)
+    {
+        if (nuevoObjeto != heldItem)
+        {
+            heldItem = nuevoObjeto;
+            heldItem.transform.SetParent(holdPoint);
+            heldItem.transform.localPosition = Vector3.zero;
+            heldItem.transform.localRotation = Quaternion.identity;
+
+            if (heldItem.TryGetComponent<Rigidbody>(out var rb)) rb.isKinematic = true;
+            if (heldItem.TryGetComponent<Collider>(out var col)) col.enabled = false;
+        }
+    }
+
+    protected void ProcesarEvolucionEnMano(TipoProceso proceso)
+    {
+        if (heldItem == null) return;
+
+        if (heldItem.TryGetComponent<Ingrediente>(out var ingrediente))
+        {
+            // Genera la nueva versión física del ingrediente
+            GameObject resultado = ingrediente.Evolucionar(proceso);
+
+            // Si cambió a un Prefab diferente, acóplalo de nuevo a la mano
+            if (resultado != heldItem)
+            {
+                heldItem = resultado;
+                heldItem.transform.SetParent(holdPoint);
+                heldItem.transform.localPosition = Vector3.zero;
+                heldItem.transform.localRotation = Quaternion.identity;
+
+                if (heldItem.TryGetComponent<Rigidbody>(out var rb)) rb.isKinematic = true;
+                if (heldItem.TryGetComponent<Collider>(out var col)) col.enabled = false;
+            }
         }
     }
 

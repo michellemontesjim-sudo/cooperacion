@@ -1,37 +1,77 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public enum TipoProceso { Ninguno, Triturado, Calentado, Congelado }
 
 public class Ingrediente : MonoBehaviour
 {
-    public string nombreIngrediente = "Gema Cruda";
-    public TipoProceso estadoActual = TipoProceso.Ninguno;
+    public string nombreIngrediente = "Gema Entera";
 
-    [Header("Evoluciones (Siguiente Prefab)")]
-    public GameObject prefabAlTriturar; // Ej: Polvo de Gema
-    public GameObject prefabAlCalentar; // Ej: Esencia Ferviente
-    public GameObject prefabAlCongelar; // Ej: Cristal Helmado
+    [Header("Historial de Procesos")]
+    public List<TipoProceso> historialProcesos = new List<TipoProceso>();
 
-    public GameObject AplicarProceso(TipoProceso nuevoProceso)
+    [Header("Prefabs de Siguiente Estado")]
+    public GameObject prefabAlTriturar;  // Ej: Prefab de "Pedazos de Gema"
+    public GameObject prefabAlCalentar;  // Ej: Prefab de "Gema Fundida"
+    public GameObject prefabAlCongelar;  // Ej: Prefab de "Gema Congelada"
+
+    /// <summary>
+    /// Añade un proceso al historial acumulado del ingrediente.
+    /// </summary>
+    public void RegistrarProceso(TipoProceso nuevoProceso)
     {
-        GameObject prefabSiguiente = null;
+        historialProcesos.Add(nuevoProceso);
+    }
 
-        switch (nuevoProceso)
+    /// <summary>
+    /// Requerido por CalderoFinal.cs para comprobar si la secuencia coincide con la receta pedida.
+    /// </summary>
+    public bool ValidarSecuencia(List<TipoProceso> secuenciaEsperada)
+    {
+        if (secuenciaEsperada == null) return false;
+        if (historialProcesos.Count != secuenciaEsperada.Count) return false;
+
+        for (int i = 0; i < historialProcesos.Count; i++)
         {
-            case TipoProceso.Triturado: prefabSiguiente = prefabAlTriturar; break;
-            case TipoProceso.Calentado: prefabSiguiente = prefabAlCalentar; break;
-            case TipoProceso.Congelado: prefabSiguiente = prefabAlCongelar; break;
+            if (historialProcesos[i] != secuenciaEsperada[i]) return false;
+        }
+        return true;
+    }
+
+    /// <summary>
+    /// Transforma el modelo 3D preservando y actualizando el historial acumulado.
+    /// </summary>
+    public GameObject Evolucionar(TipoProceso proceso)
+    {
+        GameObject siguientePrefab = null;
+
+        switch (proceso)
+        {
+            case TipoProceso.Triturado: siguientePrefab = prefabAlTriturar; break;
+            case TipoProceso.Calentado: siguientePrefab = prefabAlCalentar; break;
+            case TipoProceso.Congelado: siguientePrefab = prefabAlCongelar; break;
         }
 
-        // Si existe una transformación válida para este estado actual
-        if (prefabSiguiente != null)
+        // Si no hay un prefab asignado para este proceso, mantiene el objeto actual y solo registra el paso
+        if (siguientePrefab == null)
         {
-            GameObject nuevoObjeto = Instantiate(prefabSiguiente, transform.position, transform.rotation);
-            Destroy(gameObject); // Elimina el ingrediente base
-            return nuevoObjeto;
+            RegistrarProceso(proceso);
+            return gameObject;
         }
 
-        Debug.Log($"El ingrediente {nombreIngrediente} no reacciona al proceso {nuevoProceso}");
-        return gameObject;
+        // 1. Instancia el nuevo modelo 3D en la misma posición
+        GameObject nuevoObjeto = Instantiate(siguientePrefab, transform.position, transform.rotation);
+
+        // 2. Copia el historial previo al nuevo objeto y le agrega el proceso actual
+        if (nuevoObjeto.TryGetComponent<Ingrediente>(out var nuevoIngredienteScript))
+        {
+            nuevoIngredienteScript.historialProcesos = new List<TipoProceso>(this.historialProcesos);
+            nuevoIngredienteScript.RegistrarProceso(proceso);
+        }
+
+        // 3. Destruye la versión anterior
+        Destroy(gameObject);
+
+        return nuevoObjeto;
     }
 }

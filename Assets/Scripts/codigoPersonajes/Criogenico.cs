@@ -86,21 +86,6 @@ public class Criogenico : PlayerAlquimia
 
     protected override void ExecuteAbilityLogic()
     {
-        if (heldItem != null && heldItem.TryGetComponent<Ingrediente>(out var ingrediente))
-        {
-            GameObject resultado = ingrediente.AplicarProceso(TipoProceso.Congelado);
-
-            // Si el ingrediente cambió a un nuevo Prefab, reasígnalo a la mano
-            if (resultado != heldItem)
-            {
-                heldItem = resultado;
-                heldItem.transform.SetParent(holdPoint);
-                heldItem.transform.localPosition = Vector3.zero;
-                heldItem.transform.localRotation = Quaternion.identity;
-
-                if (heldItem.TryGetComponent<Rigidbody>(out var rb)) rb.isKinematic = true;
-                if (heldItem.TryGetComponent<Collider>(out var col)) col.enabled = false;
-            }
-        }
+        ProcesarEvolucionEnMano(TipoProceso.Congelado);
     }
 }

@@ -1,10 +1,12 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
 public struct OrdenReceta
 {
-    public string nombreReceta;             // Ej: "Cristal Helmado"
-    public TipoProceso estadoRequerido;     // Ej: TipoProceso.Congelado
-    public Sprite iconoResultado;           // Sprite para la interfaz gráfica
-    public int puntosRecompensa;            // Ej: 100
+    public string nombreReceta;
+    public List<TipoProceso> secuenciaRequerida; // Ej: [Triturado, Calentado, Congelado]
+    public GameObject prefabResultadoFinal;      // El objeto transformado que se entregará
+    public Sprite iconoResultado;
+    public int puntosRecompensa;
 }

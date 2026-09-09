@@ -1,9 +1,9 @@
 using UnityEngine;
 
-public class Telepatico: PlayerAlquimia
+public class ControladorTiempo:PlayerAlquimia
 {
     public float rangoDeteccion = 1.5f;
-    public float alcanceTelequinesis = 6f;
+
     protected override void TryPickOrDrop()
     {
         if (holdPoint == null) return;
@@ -36,29 +36,17 @@ public class Telepatico: PlayerAlquimia
         // -------------------------------------------------------------
         // CASO 2: TIENES LAS MANOS LIBRES
         // -------------------------------------------------------------
-
-        // PRIORIDAD 1: Estructuras (Mesas y Cajas Generadoras)
         foreach (Collider hit in hits)
         {
-            // A. Tomar objeto desde una mesa ocupada
+            // A. Intentar tomar de una mesa ocupada
             if (hit.TryGetComponent<MesaContenedora>(out var mesa) && mesa.EstaOcupada)
             {
                 heldItem = mesa.TomarObjeto();
-                if (heldItem != null) AgarrarEnMano(heldItem);
+                AgarrarEnMano(heldItem);
                 return;
             }
 
-            // B. Obtener un nuevo ingrediente desde un generador/caja
-            if (hit.TryGetComponent<GeneradorIngredientes>(out var generador))
-            {
-                heldItem = generador.EntregarIngrediente(holdPoint);
-                return;
-            }
-        }
-
-        // PRIORIDAD 2: Objetos e ingredientes sueltos tirados en el suelo
-        foreach (Collider hit in hits)
-        {
+            // B. Intentar tomar un ingrediente suelto del suelo
             if (hit.TryGetComponent<Ingrediente>(out var ingrediente))
             {
                 heldItem = ingrediente.gameObject;
@@ -97,19 +85,7 @@ public class Telepatico: PlayerAlquimia
 
     protected override void ExecuteAbilityLogic()
     {
-        if (heldItem == null)
-        {
-            if (Physics.Raycast(transform.position + Vector3.up, transform.forward, out RaycastHit hit, alcanceTelequinesis))
-            {
-                if (hit.collider.TryGetComponent<Ingrediente>(out var ing))
-                {
-                    heldItem = ing.gameObject;
-                    heldItem.transform.SetParent(holdPoint);
-                    heldItem.transform.localPosition = Vector3.zero;
-                    if (heldItem.TryGetComponent<Rigidbody>(out var rb)) rb.isKinematic = true;
-                    Debug.Log("¡Objeto atraído con Telequinesis!");
-                }
-            }
-        }
+        ProcesarEvolucionEnMano(TipoProceso.Triturado);
     }
 }
+

@@ -14,6 +14,7 @@ public class CalderoFinal : MonoBehaviour
     public Image imagenIconoOrden;
     public TextMeshProUGUI textoPuntajeTotal;
     public GameObject panelVictoriaUI; // Panel desplegable de victoria
+    public GameObject panelDerrotaUI;
 
     private OrdenReceta ordenActual;
     private int puntajeTotal = 0;
@@ -36,8 +37,12 @@ public class CalderoFinal : MonoBehaviour
         if (textoNombreOrden != null)
             textoNombreOrden.text = ordenActual.nombreReceta;
 
-        if (textoProcesoRequerido != null)
-            textoProcesoRequerido.text = $"Proceso: {ordenActual.estadoRequerido}";
+        // Formatea la lista de procesos requeridos en un texto visual (Ej: "Proceso: Triturado -> Calentado -> Congelado")
+        if (textoProcesoRequerido != null && ordenActual.secuenciaRequerida != null)
+        {
+            string secuenciaTexto = string.Join(" -> ", ordenActual.secuenciaRequerida);
+            textoProcesoRequerido.text = $"Proceso: {secuenciaTexto}";
+        }
 
         if (imagenIconoOrden != null && ordenActual.iconoResultado != null)
             imagenIconoOrden.sprite = ordenActual.iconoResultado;
@@ -49,8 +54,9 @@ public class CalderoFinal : MonoBehaviour
 
         if (other.TryGetComponent<Ingrediente>(out var ingrediente))
         {
-            // Valida el nombre y el estado procesado
-            if (ingrediente.nombreIngrediente == ordenActual.nombreReceta && ingrediente.estadoActual == ordenActual.estadoRequerido)
+            // Valida que el nombre coincida y que el historial del ingrediente sea idéntico a la secuencia de la orden
+            if (ingrediente.nombreIngrediente == ordenActual.nombreReceta &&
+                ingrediente.ValidarSecuencia(ordenActual.secuenciaRequerida))
             {
                 puntajeTotal += ordenActual.puntosRecompensa;
                 ActualizarTextoPuntos();
@@ -69,7 +75,7 @@ public class CalderoFinal : MonoBehaviour
             }
             else
             {
-                Debug.Log("Ingrediente o proceso incorrecto. Se descartó la entrega.");
+                Debug.Log("Ingrediente o secuencia de procesos incorrecta. Se descartó la entrega.");
                 Destroy(other.gameObject);
             }
         }
@@ -89,6 +95,27 @@ public class CalderoFinal : MonoBehaviour
         if (panelVictoriaUI != null)
         {
             panelVictoriaUI.SetActive(true);
+        }
+    }
+
+    public OrdenReceta ObtenerOrdenActual()
+    {
+        return ordenActual;
+    }
+
+    public void EvaluarFinDeTiempo()
+    {
+        if (juegoTerminado) return;
+
+        juegoTerminado = true;
+
+        if (puntajeTotal >= puntosParaGanar)
+        {
+            GanarPartida();
+        }
+        else
+        {
+            panelDerrotaUI.SetActive(true);
         }
     }
 }

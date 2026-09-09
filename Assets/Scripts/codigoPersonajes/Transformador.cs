@@ -1,9 +1,11 @@
 using UnityEngine;
 
-public class Triturador: PlayerAlquimia
+public class Transformador:PlayerAlquimia
 {
     public float rangoDeteccion = 1.5f;
 
+    [Header("Prefab de Receta Fallida")]
+    public GameObject prefabBasura;
     protected override void TryPickOrDrop()
     {
         if (holdPoint == null) return;
@@ -46,6 +48,13 @@ public class Triturador: PlayerAlquimia
                 return;
             }
 
+            // B. ¡AQUÍ VA LA CAJA! Genera e instala un ingrediente nuevo en su mano
+            if (hit.TryGetComponent<GeneradorIngredientes>(out var generador))
+            {
+                heldItem = generador.EntregarIngrediente(holdPoint);
+                return; // Interacción completada con éxito
+            }
+
             // B. Intentar tomar un ingrediente suelto del suelo
             if (hit.TryGetComponent<Ingrediente>(out var ingrediente))
             {
@@ -85,21 +94,27 @@ public class Triturador: PlayerAlquimia
 
     protected override void ExecuteAbilityLogic()
     {
-        if (heldItem != null && heldItem.TryGetComponent<Ingrediente>(out var ingrediente))
+        if (heldItem == null || !heldItem.TryGetComponent<Ingrediente>(out var ingrediente)) return;
+
+        CalderoFinal caldero = FindObjectOfType<CalderoFinal>();
+        if (caldero == null) return;
+
+        OrdenReceta ordenActual = caldero.ObtenerOrdenActual();
+
+        // Evalúa si el historial del ingrediente coincide con la secuencia de la orden
+        if (ingrediente.ValidarSecuencia(ordenActual.secuenciaRequerida))
         {
-            GameObject resultado = ingrediente.AplicarProceso(TipoProceso.Triturado);
-
-            // Si el ingrediente cambió a un nuevo Prefab, reasígnalo a la mano
-            if (resultado != heldItem)
-            {
-                heldItem = resultado;
-                heldItem.transform.SetParent(holdPoint);
-                heldItem.transform.localPosition = Vector3.zero;
-                heldItem.transform.localRotation = Quaternion.identity;
-
-                if (heldItem.TryGetComponent<Rigidbody>(out var rb)) rb.isKinematic = true;
-                if (heldItem.TryGetComponent<Collider>(out var col)) col.enabled = false;
-            }
+            GameObject nuevoResultado = Instantiate(ordenActual.prefabResultadoFinal, holdPoint.position, holdPoint.rotation);
+            Destroy(heldItem);
+            ActualizarObjetoEnMano(nuevoResultado);
+            Debug.Log("¡Transmutación Exitosa! El ingrediente es correcto.");
+        }
+        else
+        {
+            GameObject basura = Instantiate(prefabBasura, holdPoint.position, holdPoint.rotation);
+            Destroy(heldItem);
+            ActualizarObjetoEnMano(basura);
+            Debug.LogWarning("Secuencia incorrecta. La transmutación falló.");
         }
     }
 }

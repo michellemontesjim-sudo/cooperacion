@@ -1,0 +1,120 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &9150441069886060075
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: d95df7c6ae1b2854f95392726591fc6f, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 44.566193
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d95df7c6ae1b2854f95392726591fc6f, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 44.566193
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d95df7c6ae1b2854f95392726591fc6f, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 9.458746
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d95df7c6ae1b2854f95392726591fc6f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 12.30217
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d95df7c6ae1b2854f95392726591fc6f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d95df7c6ae1b2854f95392726591fc6f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.63201
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d95df7c6ae1b2854f95392726591fc6f, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071067
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d95df7c6ae1b2854f95392726591fc6f, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d95df7c6ae1b2854f95392726591fc6f, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d95df7c6ae1b2854f95392726591fc6f, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d95df7c6ae1b2854f95392726591fc6f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d95df7c6ae1b2854f95392726591fc6f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d95df7c6ae1b2854f95392726591fc6f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d95df7c6ae1b2854f95392726591fc6f, type: 3}
+      propertyPath: m_Name
+      value: critalCalentado
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: d95df7c6ae1b2854f95392726591fc6f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2013049770951790118}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: d95df7c6ae1b2854f95392726591fc6f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 223690276720761795}
+  m_SourcePrefab: {fileID: 100100000, guid: d95df7c6ae1b2854f95392726591fc6f, type: 3}
+--- !u!1 &8231890166172158842 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: d95df7c6ae1b2854f95392726591fc6f, type: 3}
+  m_PrefabInstance: {fileID: 9150441069886060075}
+  m_PrefabAsset: {fileID: 0}
+--- !u!135 &2013049770951790118
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8231890166172158842}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.016106585
+  m_Center: {x: 0, y: 0.000009859614, z: 0.04}
+--- !u!114 &223690276720761795
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8231890166172158842}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59cca03a6cf9b884fb76e9b3a39f7e5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Ingrediente
+  nombreIngrediente: Cristal
+  historialProcesos: 
+  prefabAlTriturar: {fileID: 4285235601241106352, guid: 880181db5cc13c7429c93ff3c08b2a28, type: 3}
+  prefabAlCalentar: {fileID: 8231890166172158842}
+  prefabAlCongelar: {fileID: 2365117286847251886, guid: 011eaff2d87e3ec48b010d121d9e3f8c, type: 3}

@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UIElements;
 
 public class PlayerController : MonoBehaviour
 {
@@ -56,29 +57,6 @@ public class PlayerController : MonoBehaviour
             Quaternion targetRotation = Quaternion.LookRotation(horizontalVelocity);
             rb.MoveRotation(Quaternion.Slerp(rb.rotation, targetRotation, Time.fixedDeltaTime * 10f));
         }
-    }
-
-
-
-    void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Piromantico"))
-        {
-            Debug.Log("Piromantico entered the trigger");
-        }
-        else if (other.CompareTag("Criomantico"))
-        {
-            Debug.Log("Criomantico entered the trigger");
-        }
-        else if (other.CompareTag("Cronomantico"))
-        {
-            Debug.Log("Cronomantico entered the trigger");
-        }
-        else if (other.CompareTag("Transmutador"))
-        {
-            Debug.Log("Transmutador entered the trigger");
-        }
-
     }
 
     public void OnMove(InputAction.CallbackContext context)

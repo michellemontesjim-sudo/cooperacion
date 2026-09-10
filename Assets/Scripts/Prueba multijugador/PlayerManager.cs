@@ -4,10 +4,12 @@ using System.Collections.Generic;
 
 public class PlayerManager : MonoBehaviour
 {
+    [SerializeField] private GameObject[] playerPrefabs;
     private List<PlayerInput> players = new List<PlayerInput>();
     [SerializeField] private List<Transform> spawnPoints;
 
     private PlayerInputManager playerInputManager;
+
 
     public List<PlayerInput> Players { get => players; set => players = value; }
 
@@ -15,6 +17,8 @@ public class PlayerManager : MonoBehaviour
     {
         playerInputManager = FindAnyObjectByType<PlayerInputManager>();
     }
+
+
 
     private void OnEnable()
     {
@@ -29,6 +33,11 @@ public class PlayerManager : MonoBehaviour
     public void AddPlayer(PlayerInput player)
     {
         players.Add(player);
+        if (players.Count < playerPrefabs.Length)
+        {
+            playerInputManager.playerPrefab = playerPrefabs[players.Count];
+        }
+
 
         Transform playerParent = player.transform.parent;
         playerParent.position = spawnPoints[players.Count - 1].position;

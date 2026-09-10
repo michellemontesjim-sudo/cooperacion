@@ -22,9 +22,13 @@ public class CalderoFinal : MonoBehaviour
 
     private void Start()
     {
-        if (panelVictoriaUI != null) panelVictoriaUI.SetActive(false);
         ActualizarTextoPuntos();
         GenerarNuevaOrden();
+    }
+    private void Awake()
+    {
+        if (panelVictoriaUI != null) panelVictoriaUI.SetActive(false);
+        if (panelDerrotaUI != null) panelDerrotaUI.SetActive(false);
     }
 
     public void GenerarNuevaOrden()

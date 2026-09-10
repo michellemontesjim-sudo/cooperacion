@@ -74,6 +74,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: e5cbafe5ba9938340b4bbd1ec944f6a7, type: 3}
       insertIndex: -1
       addedObject: {fileID: 504876392462530208}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: e5cbafe5ba9938340b4bbd1ec944f6a7, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3370477856768123477}
   m_SourcePrefab: {fileID: 100100000, guid: e5cbafe5ba9938340b4bbd1ec944f6a7, type: 3}
 --- !u!1 &8165598967979171084 stripped
 GameObject:
@@ -113,8 +116,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59cca03a6cf9b884fb76e9b3a39f7e5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Ingrediente
-  nombreIngrediente: Congelaton
-  historialProcesos: 
+  nombreIngrediente: Congelato
+  historialProcesos: 03000000
   prefabAlTriturar: {fileID: 0}
   prefabAlCalentar: {fileID: 0}
   prefabAlCongelar: {fileID: 0}
+--- !u!54 &3370477856768123477
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8165598967979171084}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0

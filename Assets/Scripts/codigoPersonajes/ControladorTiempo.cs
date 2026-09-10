@@ -4,8 +4,23 @@ public class ControladorTiempo:PlayerAlquimia
 {
     public float rangoDeteccion = 1.5f;
 
+    /*private void Start()
+    {
+        // Si hay un objeto en el holdPoint al iniciar la escena, lo vinculamos a heldItem
+        if (holdPoint != null && holdPoint.childCount > 0 && heldItem == null)
+        {
+            heldItem = holdPoint.GetChild(0).gameObject;
+
+            // Preparamos sus componentes para que no interfieran
+            if (heldItem.TryGetComponent<Collider>(out var col)) col.enabled = false;
+            if (heldItem.TryGetComponent<Rigidbody>(out var rb)) rb.isKinematic = true;
+        }
+    }*/
+
     protected override void TryPickOrDrop()
     {
+
+        if (estaEnMinijuego) return;
         if (holdPoint == null) return;
 
         Collider[] hits = Physics.OverlapSphere(holdPoint.position, rangoDeteccion);
@@ -22,6 +37,7 @@ public class ControladorTiempo:PlayerAlquimia
                 {
                     if (mesa.ColocarObjeto(heldItem))
                     {
+                        Debug.Log("Objeto colocado en la mesa. Manos libres.");
                         heldItem = null;
                     }
                     return;
@@ -43,6 +59,7 @@ public class ControladorTiempo:PlayerAlquimia
             {
                 heldItem = mesa.TomarObjeto();
                 AgarrarEnMano(heldItem);
+                Debug.Log("Objeto tomado de la mesa: " + heldItem.name);
                 return;
             }
 
@@ -51,6 +68,7 @@ public class ControladorTiempo:PlayerAlquimia
             {
                 heldItem = ingrediente.gameObject;
                 AgarrarEnMano(heldItem);
+                Debug.Log("¡Ingrediente tomado del suelo exitosamente!: " + heldItem.name);
                 return;
             }
         }
@@ -85,7 +103,16 @@ public class ControladorTiempo:PlayerAlquimia
 
     protected override void ExecuteAbilityLogic()
     {
-        ProcesarEvolucionEnMano(TipoProceso.Triturado);
+        if (heldItem != null)
+        {
+            // Llama a tu función de evolución pasando el tipo de proceso correspondiente
+            ProcesarEvolucionEnMano(TipoProceso.Triturado);
+            Debug.Log("¡Ingrediente transformado con éxito por el Poder del Tiempo!");
+        }
+        else
+        {
+            Debug.LogWarning("El minijuego se completó, pero 'heldItem' sigue siendo nulo para el script del jugador.");
+        }
     }
 }
 

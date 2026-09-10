@@ -1,3 +1,5 @@
+using System;
+using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -21,14 +23,28 @@ public abstract class PlayerAlquimia:MonoBehaviour
     private RectTransform miPanelUI;
     protected PlayerInput myPlayerInput;
 
-    public GameObject[] prefabsMinijuegos;
+    [Header("UI Privada y Minijuego del Rol")]
+    public GameObject prefabMinijuegoUnico;
     protected bool estaEnMinijuego = false;
 
-
+    
     protected virtual void Awake()
     {
         controller = GetComponent<CharacterController>();
         myPlayerInput = GetComponent<PlayerInput>();
+    }
+
+    // En PlayerAlquimia.cs o en un componente selector
+    protected virtual void Start()
+    {
+        if (myPlayerInput != null)
+        {
+            // Activa el componente del rol asignado a este índice
+            int index = myPlayerInput.playerIndex;
+            ConfigurarCuadranteUI(index);
+        }
+
+       
     }
 
     public void AsignarPanelUI(RectTransform panel)
@@ -44,17 +60,27 @@ public abstract class PlayerAlquimia:MonoBehaviour
         }
     }
 
-    protected virtual void Start()
+    /*protected virtual void Start()
     {
         // Si no se asignó un panel manualmente, lo busca en el UIManager usando su índice
         if (miPanelUI == null && myPlayerInput != null && UIPuzzleManager.Instance != null)
         {
             AsignarPanelUI(UIPuzzleManager.Instance.ObtenerPanelJugador(myPlayerInput.playerIndex));
         }
-    }
+    }*/
 
     // Callbacks del Input System
-    public void OnMove(InputValue value) => moveInput = value.Get<Vector2>();
+    public void OnMove(InputValue value)
+    {
+        // Si está en el minijuego, fuerza el vector a cero e ignora la tecla
+        if (estaEnMinijuego)
+        {
+            moveInput = Vector2.zero;
+            return;
+        }
+
+        moveInput = value.Get<Vector2>();
+    }
     public void OnInteract(InputValue value)
     {
         if (value.isPressed)
@@ -88,25 +114,48 @@ public abstract class PlayerAlquimia:MonoBehaviour
     {
         if (estaEnMinijuego) return;
 
-        // Si existen puzzles y el panel UI privado está configurado, lanza el minijuego
-        if (prefabsMinijuegos != null && prefabsMinijuegos.Length > 0 && miPanelUI != null)
+        // Si existe el puzzle y el panel UI privado está configurado, lanza el minijuego
+        if (prefabMinijuegoUnico != null && miPanelUI != null)
         {
             LanzarMinijuego();
         }
         else
         {
-            // Si no hay minijuegos, ejecuta directamente la habilidad de la subclase
+            // Si no hay minijuego, ejecuta directamente la habilidad de la subclase
             ExecuteAbilityLogic();
         }
     }
 
     private void LanzarMinijuego()
     {
+        // Si no tienes nada en la mano, ni siquiera abras el minijuego
+        if (heldItem == null)
+        {
+            Debug.LogWarning("[PlayerAlquimia] No puedes usar la habilidad: ¡Las manos están vacías!");
+            return;
+        }
+        // Si miPanelUI no se asignó en el Lobby, lo reconecta con la escena de Juego actual
+        if (miPanelUI == null && myPlayerInput != null)
+        {
+            ConfigurarCuadranteUI(myPlayerInput.playerIndex);
+        }
+
+        // Si aún así no existe el panel en la escena, aborta para no romper el juego
+        if (miPanelUI == null)
+        {
+            Debug.LogError($"[PlayerAlquimia] El Jugador {myPlayerInput?.playerIndex} no tiene un Canvas UI asignado en Nivel1.");
+            return;
+        }
+
+        if (prefabMinijuegoUnico == null) return;
+
         estaEnMinijuego = true;
 
-        // Elige un puzzle al azar y lo coloca en su cuadrante
-        int index = Random.Range(0, prefabsMinijuegos.Length);
-        GameObject puzzleObj = Instantiate(prefabsMinijuegos[index], miPanelUI);
+        // 1. Instancia física en la escena activa
+        GameObject puzzleObj = Instantiate(prefabMinijuegoUnico);
+
+        // 2. Asigna el padre usando puzzleObj (NUNCA prefabMinijuegoUnico)
+        puzzleObj.transform.SetParent(miPanelUI, false);
 
         MinijuegoBase minijuego = puzzleObj.GetComponent<MinijuegoBase>();
 
@@ -116,7 +165,7 @@ public abstract class PlayerAlquimia:MonoBehaviour
             {
                 estaEnMinijuego = false;
                 Destroy(puzzleObj);
-                ExecuteAbilityLogic(); // ¡Dispara el efecto real del rol!
+                ExecuteAbilityLogic();
             };
 
             minijuego.OnPuzzleFallo += () =>
@@ -127,12 +176,11 @@ public abstract class PlayerAlquimia:MonoBehaviour
 
             minijuego.InicializarPuzzle(myPlayerInput);
         }
-        /*else
+        else
         {
-            Debug.LogWarning("El minijuego instanciado carece del componente MinijuegoBase.");
             estaEnMinijuego = false;
             Destroy(puzzleObj);
-        }*/
+        }
     }
 
     protected void ActualizarObjetoEnMano(GameObject nuevoObjeto)

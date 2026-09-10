@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public struct OrdenReceta
+public class OrdenReceta
 {
     public string nombreReceta;
     public List<TipoProceso> secuenciaRequerida; // Ej: [Triturado, Calentado, Congelado]

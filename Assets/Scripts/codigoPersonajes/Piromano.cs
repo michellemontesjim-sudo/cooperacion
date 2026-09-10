@@ -6,6 +6,7 @@ public class Piromano : PlayerAlquimia
 
     protected override void TryPickOrDrop()
     {
+        if (estaEnMinijuego) return;
         if (holdPoint == null) return;
 
         Collider[] hits = Physics.OverlapSphere(holdPoint.position, rangoDeteccion);
@@ -85,6 +86,14 @@ public class Piromano : PlayerAlquimia
 
     protected override void ExecuteAbilityLogic()
     {
-        ProcesarEvolucionEnMano(TipoProceso.Calentado);
+        if (heldItem != null)
+        {
+            ProcesarEvolucionEnMano(TipoProceso.Calentado);
+            Debug.Log("¡Ingrediente transformado por el Pirómano!");
+        }
+        else
+        {
+            Debug.LogWarning("El minijuego finalizó, pero no se encontró ingrediente en la mano.");
+        }
     }
 }

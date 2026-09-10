@@ -1,78 +1,85 @@
-using UnityEngine;
+Ôªøusing UnityEngine;
 
-public class Transformador:PlayerAlquimia
+public class Transformador : PlayerAlquimia
 {
     public float rangoDeteccion = 1.5f;
 
     [Header("Prefab de Receta Fallida")]
     public GameObject prefabBasura;
+
     protected override void TryPickOrDrop()
     {
-        if (holdPoint == null) return;
+        if (estaEnMinijuego) return;
+
+        if (holdPoint == null)
+        {
+            Debug.LogError("[Transformador] ¬°EL HOLD POINT NO EST√Å ASIGNADO EN EL INSPECTOR!");
+            return;
+        }
 
         Collider[] hits = Physics.OverlapSphere(holdPoint.position, rangoDeteccion);
+        Debug.Log($"[Transformador] Objetos detectados en el √°rea de interacci√≥n: {hits.Length}");
 
-        // -------------------------------------------------------------
         // CASO 1: LLEVAS UN OBJETO EN LA MANO
-        // -------------------------------------------------------------
         if (heldItem != null)
         {
-            // A. Buscar primero si hay una mesa libre enfrente
             foreach (Collider hit in hits)
             {
                 if (hit.TryGetComponent<MesaContenedora>(out var mesa) && !mesa.EstaOcupada)
                 {
-                    if (mesa.ColocarObjeto(heldItem))
-                    {
-                        heldItem = null;
-                    }
+                    if (mesa.ColocarObjeto(heldItem)) heldItem = null;
                     return;
                 }
             }
-
-            // B. Si no hay mesa libre enfrente, soltarlo directamente al suelo
             SoltarAlSuelo();
             return;
         }
 
-        // -------------------------------------------------------------
         // CASO 2: TIENES LAS MANOS LIBRES
-        // -------------------------------------------------------------
         foreach (Collider hit in hits)
         {
-            // A. Intentar tomar de una mesa ocupada
             if (hit.TryGetComponent<MesaContenedora>(out var mesa) && mesa.EstaOcupada)
             {
                 heldItem = mesa.TomarObjeto();
                 AgarrarEnMano(heldItem);
+                Debug.Log("[Transformador] Objeto tomado de la MESA exitosamente.");
                 return;
             }
 
-            // B. °AQUÕ VA LA CAJA! Genera e instala un ingrediente nuevo en su mano
             if (hit.TryGetComponent<GeneradorIngredientes>(out var generador))
             {
-                heldItem = generador.EntregarIngrediente(holdPoint);
-                return; // InteracciÛn completada con Èxito
+                GameObject nuevo = generador.EntregarIngrediente(holdPoint);
+                if (nuevo != null)
+                {
+                    heldItem = nuevo;
+                    AgarrarEnMano(heldItem);
+                    Debug.Log("[Transformador] Objeto tomado de la CAJA exitosamente.");
+                }
+                return;
             }
 
-            // B. Intentar tomar un ingrediente suelto del suelo
             if (hit.TryGetComponent<Ingrediente>(out var ingrediente))
             {
                 heldItem = ingrediente.gameObject;
                 AgarrarEnMano(heldItem);
+                Debug.Log("[Transformador] Objeto tomado del SUELO exitosamente.");
                 return;
             }
         }
+
+        Debug.LogWarning("[Transformador] Se presion√≥ Interactuar, pero no se encontr√≥ ning√∫n ingrediente, mesa ni caja v√°lida.");
     }
 
     private void AgarrarEnMano(GameObject obj)
     {
+        if (obj == null) return;
+
         obj.transform.SetParent(holdPoint);
         obj.transform.localPosition = Vector3.zero;
         obj.transform.localRotation = Quaternion.identity;
 
         if (obj.TryGetComponent<Collider>(out var col))
-            col.enabled = false; // Se desactiva para no colisionar con el jugador mientras camina
+            col.enabled = false;
 
         if (obj.TryGetComponent<Rigidbody>(out var rb))
             rb.isKinematic = true;
@@ -80,41 +87,65 @@ public class Transformador:PlayerAlquimia
 
     private void SoltarAlSuelo()
     {
+        if (heldItem == null) return;
+
         heldItem.transform.SetParent(null);
         heldItem.transform.position = holdPoint.position;
 
         if (heldItem.TryGetComponent<Collider>(out var col))
-            col.enabled = true; // Se reactiva para detectar interacciones futuras
+            col.enabled = true;
 
         if (heldItem.TryGetComponent<Rigidbody>(out var rb))
-            rb.isKinematic = false; // Reactiva fÌsicas para caer al suelo
+            rb.isKinematic = false;
 
         heldItem = null;
     }
 
     protected override void ExecuteAbilityLogic()
     {
-        if (heldItem == null || !heldItem.TryGetComponent<Ingrediente>(out var ingrediente)) return;
+        if (heldItem == null || !heldItem.TryGetComponent<Ingrediente>(out var ingrediente))
+        {
+            Debug.LogWarning("[Transformador] No tienes un ingrediente v√°lido en la mano para transmutar.");
+            return;
+        }
 
         CalderoFinal caldero = FindObjectOfType<CalderoFinal>();
-        if (caldero == null) return;
+        if (caldero == null)
+        {
+            Debug.LogError("[Transformador] No se encontr√≥ el objeto 'CalderoFinal' en la escena.");
+            return;
+        }
 
         OrdenReceta ordenActual = caldero.ObtenerOrdenActual();
+        if (ordenActual == null)
+        {
+            Debug.LogWarning("[Transformador] El caldero no tiene ninguna orden activa en este momento.");
+            return;
+        }
 
-        // Eval˙a si el historial del ingrediente coincide con la secuencia de la orden
+        GameObject objetoViejo = heldItem;
+
+        // Eval√∫a si la secuencia del ingrediente coincide con la receta pedida
         if (ingrediente.ValidarSecuencia(ordenActual.secuenciaRequerida))
         {
             GameObject nuevoResultado = Instantiate(ordenActual.prefabResultadoFinal, holdPoint.position, holdPoint.rotation);
-            Destroy(heldItem);
+            Destroy(objetoViejo);
             ActualizarObjetoEnMano(nuevoResultado);
-            Debug.Log("°TransmutaciÛn Exitosa! El ingrediente es correcto.");
+            Debug.Log("¬°Transmutaci√≥n Exitosa! El ingrediente es correcto.");
         }
         else
         {
-            GameObject basura = Instantiate(prefabBasura, holdPoint.position, holdPoint.rotation);
-            Destroy(heldItem);
-            ActualizarObjetoEnMano(basura);
-            Debug.LogWarning("Secuencia incorrecta. La transmutaciÛn fallÛ.");
+            if (prefabBasura != null)
+            {
+                GameObject basura = Instantiate(prefabBasura, holdPoint.position, holdPoint.rotation);
+                Destroy(objetoViejo);
+                ActualizarObjetoEnMano(basura);
+                Debug.LogWarning("Secuencia incorrecta. La transmutaci√≥n gener√≥ basura.");
+            }
+            else
+            {
+                Debug.LogError("[Transformador] Falta asignar el 'Prefab Basura' en el Inspector.");
+            }
         }
     }
 }

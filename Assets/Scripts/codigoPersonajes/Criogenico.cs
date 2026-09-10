@@ -6,7 +6,7 @@ public class Criogenico : PlayerAlquimia
 
     protected override void TryPickOrDrop()
     {
-
+        if (estaEnMinijuego) return;
         if (holdPoint == null) return;
 
         Collider[] hits = Physics.OverlapSphere(holdPoint.position, rangoDeteccion);

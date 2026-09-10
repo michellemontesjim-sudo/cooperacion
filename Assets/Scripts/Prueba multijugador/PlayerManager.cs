@@ -9,6 +9,8 @@ public class PlayerManager : MonoBehaviour
 
     private PlayerInputManager playerInputManager;
 
+    public List<PlayerInput> Players { get => players; set => players = value; }
+
     private void Awake()
     {
         playerInputManager = FindAnyObjectByType<PlayerInputManager>();
@@ -28,7 +30,6 @@ public class PlayerManager : MonoBehaviour
     {
         players.Add(player);
 
-        //need to use the parent due to the structure of the prefab
         Transform playerParent = player.transform.parent;
         playerParent.position = spawnPoints[players.Count - 1].position;
     }

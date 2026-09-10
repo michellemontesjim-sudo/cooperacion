@@ -5,6 +5,10 @@ TagManager:
   serializedVersion: 3
   tags:
   - Mesa
+  - Piromantico
+  - Criomantico
+  - Cronomantico
+  - Transmutador
   layers:
   - Default
   - TransparentFX

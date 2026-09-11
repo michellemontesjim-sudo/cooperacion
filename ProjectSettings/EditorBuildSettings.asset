@@ -15,6 +15,9 @@ EditorBuildSettings:
     path: Assets/Scenes/1erNivel.unity
     guid: b79930271c305c94bbe056f9eba81980
   - enabled: 1
+    path: Assets/Scenes/TesteoVariasOrdenes.unity
+    guid: d341afa4adcf5414281c66a625b6da01
+  - enabled: 1
     path: Assets/Scenes/Prueba de Multi local.unity
     guid: 07662d2699a3367488d76c4a5eb8f03c
   m_configObjects:

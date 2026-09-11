@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 7591713272611154518}
   m_Layer: 0
   m_Name: Zona
-  m_TagString: Criomantico
+  m_TagString: Cronomantico
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -264,6 +264,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 9586b847-fb30-448d-b041-66fce5b25534
     m_ActionName: MiniGames/New action
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 4eef2149-483f-41c4-a2b4-67fc0ce0fe96
+    m_ActionName: 'MiniGames/Accion[/Keyboard/e,/XInputControllerWindows/buttonSouth,/XInputControllerWindows2/buttonSouth]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: GamePlay

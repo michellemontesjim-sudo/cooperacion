@@ -216,6 +216,16 @@
                     "interactions": "",
                     "initialStateCheck": true,
                     "priority": 0
+                },
+                {
+                    "name": "Accion",
+                    "type": "Button",
+                    "id": "4eef2149-483f-41c4-a2b4-67fc0ce0fe96",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false,
+                    "priority": 0
                 }
             ],
             "bindings": [
@@ -287,6 +297,17 @@
                 },
                 {
                     "name": "",
+                    "id": "91395808-e2e6-44b8-8c47-c2000372dede",
+                    "path": "<Mouse>/delta",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "Puntero",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "c8257ea5-bde9-4814-8ff3-118467533d00",
                     "path": "<Gamepad>/rightStick",
                     "interactions": "",
@@ -298,12 +319,23 @@
                 },
                 {
                     "name": "",
-                    "id": "91395808-e2e6-44b8-8c47-c2000372dede",
-                    "path": "<Mouse>/delta",
+                    "id": "175b5dbb-baee-48b0-9a0b-a5d6b9014a47",
+                    "path": "<Keyboard>/e",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Keyboard",
-                    "action": "Puntero",
+                    "groups": ";Keyboard",
+                    "action": "Accion",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4d8ca02d-06ff-42cf-94b7-74f1db0351cc",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Control",
+                    "action": "Accion",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

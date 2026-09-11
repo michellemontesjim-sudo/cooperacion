@@ -302,6 +302,16 @@ public partial class @MultiPlayer: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""initialStateCheck"": true,
                     ""priority"": 0
+                },
+                {
+                    ""name"": ""Accion"",
+                    ""type"": ""Button"",
+                    ""id"": ""4eef2149-483f-41c4-a2b4-67fc0ce0fe96"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false,
+                    ""priority"": 0
                 }
             ],
             ""bindings"": [
@@ -373,6 +383,17 @@ public partial class @MultiPlayer: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""91395808-e2e6-44b8-8c47-c2000372dede"",
+                    ""path"": ""<Mouse>/delta"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Puntero"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""c8257ea5-bde9-4814-8ff3-118467533d00"",
                     ""path"": ""<Gamepad>/rightStick"",
                     ""interactions"": """",
@@ -384,12 +405,23 @@ public partial class @MultiPlayer: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""91395808-e2e6-44b8-8c47-c2000372dede"",
-                    ""path"": ""<Mouse>/delta"",
+                    ""id"": ""175b5dbb-baee-48b0-9a0b-a5d6b9014a47"",
+                    ""path"": ""<Keyboard>/e"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Keyboard"",
-                    ""action"": ""Puntero"",
+                    ""groups"": "";Keyboard"",
+                    ""action"": ""Accion"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4d8ca02d-06ff-42cf-94b7-74f1db0351cc"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Control"",
+                    ""action"": ""Accion"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -431,6 +463,7 @@ public partial class @MultiPlayer: IInputActionCollection2, IDisposable
         m_MiniGames = asset.FindActionMap("MiniGames", throwIfNotFound: true);
         m_MiniGames_Flechas = m_MiniGames.FindAction("Flechas", throwIfNotFound: true);
         m_MiniGames_Puntero = m_MiniGames.FindAction("Puntero", throwIfNotFound: true);
+        m_MiniGames_Accion = m_MiniGames.FindAction("Accion", throwIfNotFound: true);
     }
 
     ~@MultiPlayer()
@@ -643,6 +676,7 @@ public partial class @MultiPlayer: IInputActionCollection2, IDisposable
     private List<IMiniGamesActions> m_MiniGamesActionsCallbackInterfaces = new List<IMiniGamesActions>();
     private readonly InputAction m_MiniGames_Flechas;
     private readonly InputAction m_MiniGames_Puntero;
+    private readonly InputAction m_MiniGames_Accion;
     /// <summary>
     /// Provides access to input actions defined in input action map "MiniGames".
     /// </summary>
@@ -662,6 +696,10 @@ public partial class @MultiPlayer: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "MiniGames/Puntero".
         /// </summary>
         public InputAction @Puntero => m_Wrapper.m_MiniGames_Puntero;
+        /// <summary>
+        /// Provides access to the underlying input action "MiniGames/Accion".
+        /// </summary>
+        public InputAction @Accion => m_Wrapper.m_MiniGames_Accion;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -694,6 +732,9 @@ public partial class @MultiPlayer: IInputActionCollection2, IDisposable
             @Puntero.started += instance.OnPuntero;
             @Puntero.performed += instance.OnPuntero;
             @Puntero.canceled += instance.OnPuntero;
+            @Accion.started += instance.OnAccion;
+            @Accion.performed += instance.OnAccion;
+            @Accion.canceled += instance.OnAccion;
         }
 
         /// <summary>
@@ -711,6 +752,9 @@ public partial class @MultiPlayer: IInputActionCollection2, IDisposable
             @Puntero.started -= instance.OnPuntero;
             @Puntero.performed -= instance.OnPuntero;
             @Puntero.canceled -= instance.OnPuntero;
+            @Accion.started -= instance.OnAccion;
+            @Accion.performed -= instance.OnAccion;
+            @Accion.canceled -= instance.OnAccion;
         }
 
         /// <summary>
@@ -827,5 +871,12 @@ public partial class @MultiPlayer: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnPuntero(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Accion" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnAccion(InputAction.CallbackContext context);
     }
 }

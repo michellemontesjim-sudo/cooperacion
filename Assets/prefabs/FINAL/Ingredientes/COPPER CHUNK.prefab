@@ -89,9 +89,9 @@ MonoBehaviour:
   nombreIngrediente: Hacha
   historialProcesos: 
   prefabAlTriturar: {fileID: 7516450137284194745}
-  prefabAlCalentar: {fileID: 0}
-  prefabAlCongelar: {fileID: 0}
-  prefabAlTransmutar: {fileID: 0}
+  prefabAlCalentar: {fileID: 8892436942546543725, guid: 9b3821afbbbb8e34db805c5362eaf4a3, type: 3}
+  prefabAlCongelar: {fileID: 520390258373047747, guid: b95db4bc810b2e74c853ec3277faeb54, type: 3}
+  prefabAlTransmutar: {fileID: 6476926422003433191, guid: f0e51738d4d01984dbe5539b64fe91cb, type: 3}
   sonidoEvolucion: {fileID: 0}
   sonidoSuelto: {fileID: 0}
 --- !u!65 &1355349041749081622

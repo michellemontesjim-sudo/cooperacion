@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3145848857297655377
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3304842738955247356}
+  m_Layer: 0
+  m_Name: HoldPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3304842738955247356
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3145848857297655377}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1, z: -0.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8294421894735583677}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5823321450218794309
 GameObject:
   m_ObjectHideFlags: 0
@@ -103,7 +134,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 6cfecc95cf728b44f85bfe4b644ea180, type: 3}
       propertyPath: m_Name
-      value: CRONOMANTICO 1
+      value: CRONOMANTICO
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 6cfecc95cf728b44f85bfe4b644ea180, type: 3}
       propertyPath: m_TagString
@@ -115,6 +146,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 6cfecc95cf728b44f85bfe4b644ea180, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6881165808115789592}
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 6cfecc95cf728b44f85bfe4b644ea180, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3304842738955247356}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 6cfecc95cf728b44f85bfe4b644ea180, type: 3}
       insertIndex: -1
@@ -128,6 +162,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 6cfecc95cf728b44f85bfe4b644ea180, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3842626435484119898}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 6cfecc95cf728b44f85bfe4b644ea180, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4102342486852293363}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 6cfecc95cf728b44f85bfe4b644ea180, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6376623223048387364}
   m_SourcePrefab: {fileID: 100100000, guid: 6cfecc95cf728b44f85bfe4b644ea180, type: 3}
 --- !u!4 &8294421894735583677 stripped
 Transform:
@@ -146,7 +186,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8669539684392600327}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 935764654becdc8409421d31db578112, type: 3}
   m_Name: 
@@ -165,7 +205,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.PlayerInput
   m_Actions: {fileID: -944628639613478452, guid: 758eea32dbdfe2e4ca614e9445f4c54c, type: 3}
-  m_NotificationBehavior: 2
+  m_NotificationBehavior: 0
   m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:
     m_PersistentCalls:
@@ -178,51 +218,15 @@ MonoBehaviour:
       m_Calls: []
   m_ActionEvents:
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 820187326273299272}
-        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
-        m_MethodName: OnMove
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_ActionId: a32d7956-2fef-42b2-94ad-8c6feefc790c
     m_ActionName: 'GamePlay/Move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d,/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow,/XInputControllerWindows1/leftStick]'
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 820187326273299272}
-        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
-        m_MethodName: OnInteract
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_ActionId: 1aa22a83-e6dc-4eaf-97fd-e572189ad418
     m_ActionName: 'GamePlay/Interact[/Keyboard/e,/Keyboard/enter,/XInputControllerWindows1/buttonWest]'
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 820187326273299272}
-        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
-        m_MethodName: OnAbility
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_ActionId: 70eb4cf1-9638-4bbd-b303-9172a6901681
     m_ActionName: 'GamePlay/Ability[/Keyboard/f,/Keyboard/l,/XInputControllerWindows1/buttonSouth]'
   - m_PersistentCalls:
@@ -296,3 +300,46 @@ CapsuleCollider:
   m_Height: 2.0823221
   m_Direction: 1
   m_Center: {x: 0, y: 0.94288445, z: 0}
+--- !u!114 &4102342486852293363
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8669539684392600327}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8686ff051042fe646b78f34e7bd63026, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ControladorTiempo
+  speed: 10
+  gravity: -19.62
+  holdPoint: {fileID: 3304842738955247356}
+  prefabMinijuegoUnico: {fileID: 6649875921789158594, guid: 80787b2e8563c3246ae7ba710875e6ed, type: 3}
+  indiceJugadorCustom: -1
+  rangoDeteccion: 1.5
+--- !u!143 &6376623223048387364
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8669539684392600327}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Height: 2
+  m_Radius: 0.5
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0.86, z: 0}

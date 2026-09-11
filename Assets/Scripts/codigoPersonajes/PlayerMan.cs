@@ -42,17 +42,17 @@ public class PlayerMan : MonoBehaviour
     {
         if (jugadoresUnidos >= personajesEnEscena.Length) return;
 
-        
-        foreach (var gamepad in Gamepad.all)
-        {
-            if ((gamepad.startButton.wasPressedThisFrame || gamepad.buttonSouth.wasPressedThisFrame)
-                && !dispositivosUnidos.Contains(gamepad))
-            {
-                UnirJugador(gamepad);
-            }
-        }
 
-        
+        // foreach (var gamepad in Gamepad.all)
+        // {
+        //     if ((gamepad.startButton.wasPressedThisFrame || gamepad.buttonSouth.wasPressedThisFrame)
+        //         && !dispositivosUnidos.Contains(gamepad))
+        //     {
+        //         UnirJugador(gamepad);
+        //     }
+        // }
+
+
         if (Keyboard.current != null)
         {
             bool teclaPresionada = Keyboard.current.spaceKey.wasPressedThisFrame ||
@@ -79,14 +79,14 @@ public class PlayerMan : MonoBehaviour
         PlayerInput pInput = personaje.GetComponent<PlayerInput>();
         if (pInput != null)
         {
-            
+
             pInput.user.UnpairDevices();
 
-            
+
             InputUser.PerformPairingWithDevice(dispositivo, pInput.user);
 
-            
-            string scheme = (dispositivo is Keyboard) ? "Player1" : "Control";
+
+            string scheme = (dispositivo is Keyboard) ? "Keyboard" : "Control";
             pInput.SwitchCurrentControlScheme(scheme, dispositivo);
         }
 

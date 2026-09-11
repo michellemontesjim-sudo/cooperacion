@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1625481944218144467
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 998060323763025575}
+  m_Layer: 0
+  m_Name: HoldPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &998060323763025575
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1625481944218144467}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 1, z: -0.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6702441468015635106}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &9135824265393774170
 GameObject:
   m_ObjectHideFlags: 0
@@ -103,7 +134,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: b311c62263c8b2245aa6d0a365c665b8, type: 3}
       propertyPath: m_Name
-      value: PIROMANTICO 1
+      value: PIROMANTICO
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: b311c62263c8b2245aa6d0a365c665b8, type: 3}
       propertyPath: m_TagString
@@ -112,6 +143,9 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: b311c62263c8b2245aa6d0a365c665b8, type: 3}
+      insertIndex: 0
+      addedObject: {fileID: 998060323763025575}
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: b311c62263c8b2245aa6d0a365c665b8, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8171394621420248071}
@@ -128,6 +162,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: b311c62263c8b2245aa6d0a365c665b8, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1966858795070701637}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: b311c62263c8b2245aa6d0a365c665b8, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5840542737039349180}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: b311c62263c8b2245aa6d0a365c665b8, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5381279774168586960}
   m_SourcePrefab: {fileID: 100100000, guid: b311c62263c8b2245aa6d0a365c665b8, type: 3}
 --- !u!1 &6217232125764775960 stripped
 GameObject:
@@ -141,7 +181,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6217232125764775960}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 935764654becdc8409421d31db578112, type: 3}
   m_Name: 
@@ -160,7 +200,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.PlayerInput
   m_Actions: {fileID: -944628639613478452, guid: 758eea32dbdfe2e4ca614e9445f4c54c, type: 3}
-  m_NotificationBehavior: 2
+  m_NotificationBehavior: 0
   m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:
     m_PersistentCalls:
@@ -173,51 +213,15 @@ MonoBehaviour:
       m_Calls: []
   m_ActionEvents:
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2700343118666436695}
-        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
-        m_MethodName: OnMove
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_ActionId: a32d7956-2fef-42b2-94ad-8c6feefc790c
     m_ActionName: 'GamePlay/Move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d,/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow,/XInputControllerWindows1/leftStick]'
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2700343118666436695}
-        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
-        m_MethodName: OnInteract
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_ActionId: 1aa22a83-e6dc-4eaf-97fd-e572189ad418
     m_ActionName: 'GamePlay/Interact[/Keyboard/e,/Keyboard/enter,/XInputControllerWindows1/buttonWest]'
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2700343118666436695}
-        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
-        m_MethodName: OnAbility
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_ActionId: 70eb4cf1-9638-4bbd-b303-9172a6901681
     m_ActionName: 'GamePlay/Ability[/Keyboard/f,/Keyboard/l,/XInputControllerWindows1/buttonSouth]'
   - m_PersistentCalls:
@@ -232,6 +236,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 9586b847-fb30-448d-b041-66fce5b25534
     m_ActionName: MiniGames/New action
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 4eef2149-483f-41c4-a2b4-67fc0ce0fe96
+    m_ActionName: 'MiniGames/Accion[/Keyboard/e,/XInputControllerWindows/buttonSouth]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: GamePlay
@@ -287,6 +295,49 @@ CapsuleCollider:
   m_Height: 2.0823221
   m_Direction: 1
   m_Center: {x: 0, y: 0.94288445, z: 0}
+--- !u!114 &5840542737039349180
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6217232125764775960}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 445d2d17cd30ea54ea964dc7ef799172, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Piromano
+  speed: 10
+  gravity: -19.62
+  holdPoint: {fileID: 998060323763025575}
+  prefabMinijuegoUnico: {fileID: 439256825998493355, guid: 332e72749b18d00419302b39877f5494, type: 3}
+  indiceJugadorCustom: -1
+  rangoDeteccion: 1.5
+--- !u!143 &5381279774168586960
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6217232125764775960}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Height: 2
+  m_Radius: 0.5
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0.86, z: 0}
 --- !u!4 &6702441468015635106 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: b311c62263c8b2245aa6d0a365c665b8, type: 3}

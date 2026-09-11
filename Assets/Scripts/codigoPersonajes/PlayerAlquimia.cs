@@ -102,7 +102,7 @@ public abstract class PlayerAlquimia : MonoBehaviour
             if (movement.sqrMagnitude > 0.01f)
             {
                 controller.Move(movement * speed * Time.deltaTime);
-                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(movement), Time.deltaTime * 12f);
+                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(-movement), Time.deltaTime * 12f);
             }
         }
 

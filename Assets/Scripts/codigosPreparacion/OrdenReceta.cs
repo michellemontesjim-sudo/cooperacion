@@ -5,8 +5,8 @@ using UnityEngine;
 public class OrdenReceta
 {
     public string nombreReceta;
-    public List<TipoProceso> secuenciaRequerida; // Ej: [Triturado, Calentado, Congelado]
-    public GameObject prefabResultadoFinal;      // El objeto transformado que se entregará
+    public List<TipoProceso> secuenciaRequerida;
+    public GameObject prefabResultadoFinal;
     public Sprite iconoResultado;
     public int puntosRecompensa;
 }

@@ -5,13 +5,13 @@ using TMPro;
 public class ContadorTiempo : MonoBehaviour
 {
     [Header("Configuración de Tiempo")]
-    public float tiempoLimiteSegundos = 180f; // Ej: 3 minutos (180s)
+    public float tiempoLimiteSegundos = 180f;
     private float tiempoRestante;
     private bool cuentaActiva = false;
 
     [Header("Interfaz de Usuario")]
     public TextMeshProUGUI textoTiempo;
-    public Image barraFillTiempo; // Opcional: Barra visual circular o recta
+    public Image barraFillTiempo;
     public Color colorAlerta = Color.red;
 
     [Header("Referencias del Nivel")]
@@ -43,7 +43,7 @@ public class ContadorTiempo : MonoBehaviour
 
     private void ActualizarUI()
     {
-        // Convierte el float a formato de minutos y segundos (MM:SS)
+        // formato minutos y segundos
         int minutos = Mathf.FloorToInt(tiempoRestante / 60);
         int segundos = Mathf.FloorToInt(tiempoRestante % 60);
 
@@ -51,14 +51,14 @@ public class ContadorTiempo : MonoBehaviour
         {
             textoTiempo.text = string.Format("{0:00}:{1:00}", minutos, segundos);
 
-            // Alerta visual cuando quedan menos de 30 segundos
+            
             if (tiempoRestante <= 30f)
             {
                 textoTiempo.color = colorAlerta;
             }
         }
 
-        // Si usas barra visual con Image Type = Filled
+        
         if (barraFillTiempo != null)
         {
             barraFillTiempo.fillAmount = tiempoRestante / tiempoLimiteSegundos;

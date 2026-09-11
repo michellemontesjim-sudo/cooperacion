@@ -1,34 +1,47 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
+using System.Collections.Generic;
+using UnityEngine.InputSystem;
 
 public class CalderoFinal : MonoBehaviour
 {
     [Header("Recetas y Meta de Puntos")]
     public OrdenReceta[] recetasPosibles;
-    public int puntosParaGanar = 500; // Meta mínima para ganar
+    public int puntosParaGanar = 500;
+
+    [Header("TransiciÃ³n de Nivel (Victoria)")]
+    public string nombreSiguienteNivel = "Nivel_02";
+    public bool cambiarNivelAutomatico = true;
+    public float tiempoEsperaCambioEscena = 3f;
+
+    [Header("Reinicio de Nivel (Derrota / Fin de Tiempo)")] // ðŸ‘ˆ Nuevas opciones en el Inspector
+    public bool reiniciarAutomaticoEnDerrota = true;
+    public float tiempoEsperaReiniciar = 3f;
 
     [Header("Interfaz de Usuario (UI)")]
     public TextMeshProUGUI textoNombreOrden;
     public TextMeshProUGUI textoProcesoRequerido;
     public Image imagenIconoOrden;
     public TextMeshProUGUI textoPuntajeTotal;
-    public GameObject panelVictoriaUI; // Panel desplegable de victoria
+    public GameObject panelVictoriaUI;
     public GameObject panelDerrotaUI;
 
     private OrdenReceta ordenActual;
     private int puntajeTotal = 0;
     private bool juegoTerminado = false;
 
-    private void Start()
-    {
-        ActualizarTextoPuntos();
-        GenerarNuevaOrden();
-    }
     private void Awake()
     {
         if (panelVictoriaUI != null) panelVictoriaUI.SetActive(false);
         if (panelDerrotaUI != null) panelDerrotaUI.SetActive(false);
+    }
+
+    private void Start()
+    {
+        ActualizarTextoPuntos();
+        GenerarNuevaOrden();
     }
 
     public void GenerarNuevaOrden()
@@ -41,7 +54,6 @@ public class CalderoFinal : MonoBehaviour
         if (textoNombreOrden != null)
             textoNombreOrden.text = ordenActual.nombreReceta;
 
-        // Formatea la lista de procesos requeridos en un texto visual (Ej: "Proceso: Triturado -> Calentado -> Congelado")
         if (textoProcesoRequerido != null && ordenActual.secuenciaRequerida != null)
         {
             string secuenciaTexto = string.Join(" -> ", ordenActual.secuenciaRequerida);
@@ -58,7 +70,6 @@ public class CalderoFinal : MonoBehaviour
 
         if (other.TryGetComponent<Ingrediente>(out var ingrediente))
         {
-            // Valida que el nombre coincida y que el historial del ingrediente sea idéntico a la secuencia de la orden
             if (ingrediente.nombreIngrediente == ordenActual.nombreReceta &&
                 ingrediente.ValidarSecuencia(ordenActual.secuenciaRequerida))
             {
@@ -67,7 +78,6 @@ public class CalderoFinal : MonoBehaviour
 
                 Destroy(other.gameObject);
 
-                // Comprobación de Meta
                 if (puntajeTotal >= puntosParaGanar)
                 {
                     GanarPartida();
@@ -79,7 +89,7 @@ public class CalderoFinal : MonoBehaviour
             }
             else
             {
-                Debug.Log("Ingrediente o secuencia de procesos incorrecta. Se descartó la entrega.");
+                Debug.Log("Ingrediente o secuencia de procesos incorrecta. Se descartÃ³ la entrega.");
                 Destroy(other.gameObject);
             }
         }
@@ -93,25 +103,26 @@ public class CalderoFinal : MonoBehaviour
 
     private void GanarPartida()
     {
+        if (juegoTerminado) return;
         juegoTerminado = true;
-        Debug.Log("¡VICTORIA! Han completado los pedidos solicitados.");
+
+        Debug.Log("Â¡VICTORIA! Han completado los pedidos solicitados.");
+
+        GuardarControlesJugadores();
 
         if (panelVictoriaUI != null)
-        {
             panelVictoriaUI.SetActive(true);
+
+        if (cambiarNivelAutomatico)
+        {
+            Invoke(nameof(CargarSiguienteNivel), tiempoEsperaCambioEscena);
         }
     }
 
-    public OrdenReceta ObtenerOrdenActual()
-    {
-        return ordenActual;
-    }
-
+    // derrota por tiempo
     public void EvaluarFinDeTiempo()
     {
         if (juegoTerminado) return;
-
-        juegoTerminado = true;
 
         if (puntajeTotal >= puntosParaGanar)
         {
@@ -119,7 +130,62 @@ public class CalderoFinal : MonoBehaviour
         }
         else
         {
+            DerrotaPartida();
+        }
+    }
+
+    private void DerrotaPartida()
+    {
+        if (juegoTerminado) return;
+        juegoTerminado = true;
+
+        Debug.Log("Â¡DERROTA! Se ha agotado el tiempo.");
+
+        // guardar mandos para no perder asignaciones
+        GuardarControlesJugadores();
+
+        // pantalla derrota
+        if (panelDerrotaUI != null)
+        {
             panelDerrotaUI.SetActive(true);
         }
+
+        // 3. reinicio de nivel
+        if (reiniciarAutomaticoEnDerrota)
+        {
+            Invoke(nameof(ReiniciarNivelActual), tiempoEsperaReiniciar);
+        }
+    }
+
+    public void ReiniciarNivelActual()
+    {
+        
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    private void GuardarControlesJugadores()
+    {
+        if (PlayerMan.Instance != null && DatosPartida.Instance != null)
+        {
+            DatosPartida.Instance.DispositivosGuardados = new List<InputDevice>(PlayerMan.Instance.DispositivosUnidos);
+            Debug.Log($"[CalderoFinal] Se guardaron {DatosPartida.Instance.DispositivosGuardados.Count} controles.");
+        }
+    }
+
+    public void CargarSiguienteNivel()
+    {
+        if (!string.IsNullOrEmpty(nombreSiguienteNivel))
+        {
+            SceneManager.LoadScene(nombreSiguienteNivel);
+        }
+        else
+        {
+            Debug.LogError("[CalderoFinal] No has asignado el nombre de la siguiente escena en el Inspector.");
+        }
+    }
+
+    public OrdenReceta ObtenerOrdenActual()
+    {
+        return ordenActual;
     }
 }

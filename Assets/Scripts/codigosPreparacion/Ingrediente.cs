@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+ï»¿using System.Collections.Generic;
 using UnityEngine;
 
 public enum TipoProceso { Ninguno, Triturado, Calentado, Congelado }
@@ -11,21 +11,38 @@ public class Ingrediente : MonoBehaviour
     public List<TipoProceso> historialProcesos = new List<TipoProceso>();
 
     [Header("Prefabs de Siguiente Estado")]
-    public GameObject prefabAlTriturar;  // Ej: Prefab de "Pedazos de Gema"
-    public GameObject prefabAlCalentar;  // Ej: Prefab de "Gema Fundida"
-    public GameObject prefabAlCongelar;  // Ej: Prefab de "Gema Congelada"
+    public GameObject prefabAlTriturar;
+    public GameObject prefabAlCalentar;
+    public GameObject prefabAlCongelar;
 
-    /// <summary>
-    /// Añade un proceso al historial acumulado del ingrediente.
-    /// </summary>
+    [Header("Efectos de Audio 3D")]
+    public AudioClip sonidoEvolucion;
+    public AudioClip sonidoSuelto;
+
+    private AudioSource audioSource;
+
+    private void Awake()
+    {
+        audioSource = GetComponent<AudioSource>();
+        audioSource.spatialBlend = 1.0f; 
+        audioSource.playOnAwake = true;
+        audioSource.loop = true;
+    }
+
+    private void Start()
+    {
+        if (!audioSource.isPlaying)
+        {
+            audioSource.Play();
+        }
+    }
+
     public void RegistrarProceso(TipoProceso nuevoProceso)
     {
         historialProcesos.Add(nuevoProceso);
     }
 
-    /// <summary>
-    /// Requerido por CalderoFinal.cs para comprobar si la secuencia coincide con la receta pedida.
-    /// </summary>
+    
     public bool ValidarSecuencia(List<TipoProceso> secuenciaEsperada)
     {
         if (secuenciaEsperada == null) return false;
@@ -38,9 +55,9 @@ public class Ingrediente : MonoBehaviour
         return true;
     }
 
-    /// <summary>
+    
     /// Transforma el modelo 3D preservando y actualizando el historial acumulado.
-    /// </summary>
+    
     public GameObject Evolucionar(TipoProceso proceso)
     {
         GameObject siguientePrefab = null;
@@ -52,24 +69,24 @@ public class Ingrediente : MonoBehaviour
             case TipoProceso.Congelado: siguientePrefab = prefabAlCongelar; break;
         }
 
-        // Si no hay un prefab asignado para este proceso, mantiene el objeto actual y solo registra el paso
+        // no hay un prefab mantiene el objeto actual y solo registra el paso
         if (siguientePrefab == null)
         {
             RegistrarProceso(proceso);
             return gameObject;
         }
 
-        // 1. Instancia el nuevo modelo 3D en la misma posición
+        // Instancia nuevo modelo 3D en la misma posiciÃ³n
         GameObject nuevoObjeto = Instantiate(siguientePrefab, transform.position, transform.rotation);
 
-        // 2. Copia el historial previo al nuevo objeto y le agrega el proceso actual
+        // Copia el historial previo al nuevo objeto y le agrega el proceso actual
         if (nuevoObjeto.TryGetComponent<Ingrediente>(out var nuevoIngredienteScript))
         {
             nuevoIngredienteScript.historialProcesos = new List<TipoProceso>(this.historialProcesos);
             nuevoIngredienteScript.RegistrarProceso(proceso);
         }
 
-        // 3. Destruye la versión anterior
+        // Destruye versiÃ³n anterior
         Destroy(gameObject);
 
         return nuevoObjeto;

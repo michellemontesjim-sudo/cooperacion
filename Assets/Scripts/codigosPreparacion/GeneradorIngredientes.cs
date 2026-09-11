@@ -5,9 +5,7 @@ public class GeneradorIngredientes : MonoBehaviour
     [Header("Prefab del Ingrediente a entregar")]
     public GameObject prefabIngrediente;
 
-    /// <summary>
-    /// Instancia el ingrediente y lo empaqueta directamente en el punto de agarre del jugador.
-    /// </summary>
+    
     public GameObject EntregarIngrediente(Transform holdPoint)
     {
         if (prefabIngrediente == null)

@@ -440,10 +440,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LobbySelectionManager
   prefabsRoles:
-  - {fileID: 259278944780667641, guid: fff6edd194135244384e87d1a95b0ea1, type: 3}
-  - {fileID: 2268581958107303644, guid: 96a115091f6d6e5499d4638464ff94c0, type: 3}
-  - {fileID: 538301629413557417, guid: 322650f9c0ca3494f9b4cffaef8aacf3, type: 3}
-  - {fileID: 5066740746379909572, guid: 8c6f4c0b8b131154db1c72c06702e9f8, type: 3}
+  - {fileID: 1392351018378847443, guid: c53083ac40ff2f94eb8efc7c9aa08dc4, type: 3}
+  - {fileID: 1392351018378847443, guid: 83642a7df0e8ad547a85c4d8c2e506bb, type: 3}
+  - {fileID: 1392351018378847443, guid: e521612dd11e5fa48ae3dcd89e3bbb52, type: 3}
+  - {fileID: 1392351018378847443, guid: eb40bd8ee2ab64146b9da066aff9ad52, type: 3}
   minJugadoresParaIniciar: 1
   nombreEscenaNivel1: 1erNivel
   uiManager: {fileID: 880862144}
@@ -475,9 +475,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.PlayerInputManager
   m_NotificationBehavior: 0
-  m_MaxPlayerCount: -1
+  m_MaxPlayerCount: 4
   m_AllowJoining: 1
-  m_JoinBehavior: 0
+  m_JoinBehavior: 1
   m_PlayerJoinedEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -485,9 +485,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_JoinAction:
-    m_UseReference: 0
+    m_UseReference: 1
     m_Action:
-      m_Name: 
+      m_Name: Join
       m_Type: 0
       m_ExpectedControlType: 
       m_Id: 038b845f-dc74-4cfa-8632-b190227b67fa
@@ -496,7 +496,7 @@ MonoBehaviour:
       m_SingletonActionBindings: []
       m_Flags: 0
       m_Priority: 0
-    m_Reference: {fileID: 0}
+    m_Reference: {fileID: -2973722912912468109, guid: 758eea32dbdfe2e4ca614e9445f4c54c, type: 3}
   m_PlayerPrefab: {fileID: 0}
   m_SplitScreen: 0
   m_MaintainAspectRatioInSplitScreen: 0
@@ -1604,12 +1604,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.CanvasScaler
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 0.5
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96

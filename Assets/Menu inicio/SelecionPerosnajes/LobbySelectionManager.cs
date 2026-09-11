@@ -44,7 +44,7 @@ public class LobbySelectionManager : MonoBehaviour
 
     private void Update()
     {
-        // Si aún falta por unirse el Jugador 2 (índice 1) y presiona la tecla M en el teclado
+        // Si aï¿½n falta por unirse el Jugador 2 (ï¿½ndice 1) y presiona la tecla M en el teclado
         if (Keyboard.current != null && Keyboard.current.mKey.wasPressedThisFrame)
         {
             UnirJugadorSecundarioTeclado();
@@ -53,7 +53,7 @@ public class LobbySelectionManager : MonoBehaviour
 
     private void UnirJugadorSecundarioTeclado()
     {
-        // Solo une a J2 si no se ha unido todavía
+        // Solo une a J2 si no se ha unido todavï¿½a
         if (jugadores.Count == 1 && prefabsRoles.Length > 1)
         {
             // Instancia a J2 forzando que comparta el teclado con J1
@@ -62,12 +62,12 @@ public class LobbySelectionManager : MonoBehaviour
                 playerIndex: 1,
                 controlScheme: "Player2",
                 splitScreenIndex: -1,
-                pairWithDevice: Keyboard.current // Compártelo con el teclado activo
+                pairWithDevice: Keyboard.current // Compï¿½rtelo con el teclado activo
             );
 
-            // Importante: No llamar a OnPlayerJoined manualmente aquí, 
-            // PlayerInputManager o el evento lo registrará si está configurado,
-            // pero si usas Instantiate manual, lo añadimos a la lista:
+            // Importante: No llamar a OnPlayerJoined manualmente aquï¿½, 
+            // PlayerInputManager o el evento lo registrarï¿½ si estï¿½ configurado,
+            // pero si usas Instantiate manual, lo aï¿½adimos a la lista:
             if (!jugadores.Contains(j2Input))
             {
                 DontDestroyOnLoad(j2Input.gameObject);
@@ -83,40 +83,27 @@ public class LobbySelectionManager : MonoBehaviour
 
     private void OnEnable()
     {
-        if (inputManager != null) inputManager.onPlayerJoined += OnPlayerJoined;
+        inputManager.onPlayerJoined += OnPlayerJoined;
     }
 
     private void OnDisable()
     {
-        if (inputManager != null) inputManager.onPlayerJoined -= OnPlayerJoined;
+        inputManager.onPlayerJoined -= OnPlayerJoined;
     }
 
     private void OnPlayerJoined(PlayerInput pInput)
     {
-        /*DontDestroyOnLoad(pInput.gameObject);
-        jugadores.Add(pInput);
-
-        Debug.Log($"¡Jugador {pInput.playerIndex + 1} ({pInput.gameObject.name}) unido mediante {pInput.currentControlScheme}!");
-
-        // Actualiza la tarjeta visual del jugador que se acaba de unirse
-        if (uiManager != null)
-        {
-            uiManager.ActualizarTarjetaConectada(pInput.playerIndex, pInput.currentControlScheme);
-        }
-
-        // Prepara el prefab del siguiente rol para el próximo que presione unirse
-        ActualizarPrefabSiguienteJugador();*/
 
         int index = pInput.playerIndex;
 
-        // Bloquear el Control Scheme específico según el jugador que se une
+        // Bloquear el Control Scheme especï¿½fico segï¿½n el jugador que se une
         if (index == 0)
         {
-            pInput.SwitchCurrentControlScheme("Player1", Keyboard.current);
+            pInput.SwitchCurrentControlScheme("Keyboard");
         }
-        else if (index == 1)
+        else if (index >= 1)
         {
-            pInput.SwitchCurrentControlScheme("Player2", Keyboard.current);
+            pInput.SwitchCurrentControlScheme("Control");
         }
 
         DontDestroyOnLoad(pInput.gameObject);

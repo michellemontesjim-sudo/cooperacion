@@ -173,7 +173,7 @@ PrefabInstance:
       objectReference: {fileID: 880862144}
     - target: {fileID: 6721095563705556466, guid: 502ce0d5c02896a4e9d654cb94b6eebe, type: 3}
       propertyPath: nombreEscenaNivel1
-      value: TesteoVariasOrdenes
+      value: Nivel 1
       objectReference: {fileID: 0}
     - target: {fileID: 6721095563705556466, guid: 502ce0d5c02896a4e9d654cb94b6eebe, type: 3}
       propertyPath: 'playerPrefabs.Array.data[0]'

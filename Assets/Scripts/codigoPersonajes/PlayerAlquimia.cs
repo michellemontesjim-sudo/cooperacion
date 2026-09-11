@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 
-public abstract class PlayerAlquimia:MonoBehaviour
+public abstract class PlayerAlquimia : MonoBehaviour
 {
     [Header("Ajustes de Movimiento")]
     public float speed = 6f;
@@ -40,7 +40,7 @@ public abstract class PlayerAlquimia:MonoBehaviour
             Debug.LogError($"[{gameObject.name}] No se encontró CharacterController en el objeto padre.");
     }
 
-    
+
     protected virtual void Start()
     {
         if (myPlayerInput != null)
@@ -50,7 +50,7 @@ public abstract class PlayerAlquimia:MonoBehaviour
             ConfigurarCuadranteUI(index);
         }
 
-       
+
     }
 
     public void AsignarPanelUI(RectTransform panel)
@@ -68,12 +68,12 @@ public abstract class PlayerAlquimia:MonoBehaviour
         }
     }
 
-    
+
 
     // Callbacks del Input System
     public void OnMove(InputValue value)
     {
-        
+
         if (estaEnMinijuego)
         {
             moveInput = Vector2.zero;
@@ -102,11 +102,11 @@ public abstract class PlayerAlquimia:MonoBehaviour
             if (movement.sqrMagnitude > 0.01f)
             {
                 controller.Move(movement * speed * Time.deltaTime);
-                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(movement), Time.deltaTime * 12f);
+                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(-movement), Time.deltaTime * 12f);
             }
         }
 
-        
+
         if (controller.isGrounded && velocityY.y < 0) velocityY.y = -2f;
         velocityY.y += gravity * Time.deltaTime;
         controller.Move(velocityY * Time.deltaTime);
@@ -130,7 +130,7 @@ public abstract class PlayerAlquimia:MonoBehaviour
         }
         else
         {
-            
+
             ExecuteAbilityLogic();
         }
     }
@@ -160,7 +160,7 @@ public abstract class PlayerAlquimia:MonoBehaviour
 
         estaEnMinijuego = true;
 
-        
+
         GameObject puzzleObj = Instantiate(prefabMinijuegoUnico);
 
         // asigna el padre usando puzzleObj
@@ -231,7 +231,7 @@ public abstract class PlayerAlquimia:MonoBehaviour
 
     protected abstract void TryPickOrDrop();
 
-    
+
     protected abstract void ExecuteAbilityLogic();
 
 }

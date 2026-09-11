@@ -5,7 +5,7 @@ public class GeneradorIngredientes : MonoBehaviour
     [Header("Prefab del Ingrediente a entregar")]
     public GameObject prefabIngrediente;
 
-    
+
     public GameObject EntregarIngrediente(Transform holdPoint)
     {
         if (prefabIngrediente == null)
@@ -19,7 +19,7 @@ public class GeneradorIngredientes : MonoBehaviour
         nuevoIngrediente.transform.localPosition = Vector3.zero;
         nuevoIngrediente.transform.localRotation = Quaternion.identity;
 
-        // Desactiva físicas mientras esté sostenido
+        // Desactiva fï¿½sicas mientras estï¿½ sostenido
         if (nuevoIngrediente.TryGetComponent<Rigidbody>(out var rb)) rb.isKinematic = true;
         if (nuevoIngrediente.TryGetComponent<Collider>(out var col)) col.enabled = false;
 

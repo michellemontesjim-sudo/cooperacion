@@ -140,18 +140,7 @@ public partial class @MultiPlayer: IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/e"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Player1"",
-                    ""action"": ""Interact"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""275c6834-19cd-457f-83d3-7c5410651319"",
-                    ""path"": ""<Keyboard>/enter"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Player2"",
+                    ""groups"": ""Keyboard"",
                     ""action"": ""Interact"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -173,18 +162,7 @@ public partial class @MultiPlayer: IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/f"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Player1"",
-                    ""action"": ""Ability"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""422338e2-8137-459a-a218-9326a9f4b8cf"",
-                    ""path"": ""<Keyboard>/l"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Player2"",
+                    ""groups"": ""Keyboard"",
                     ""action"": ""Ability"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -217,7 +195,7 @@ public partial class @MultiPlayer: IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/w"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Player1"",
+                    ""groups"": ""Keyboard"",
                     ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -228,7 +206,7 @@ public partial class @MultiPlayer: IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/s"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Player1"",
+                    ""groups"": ""Keyboard"",
                     ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -239,7 +217,7 @@ public partial class @MultiPlayer: IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/a"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Player1"",
+                    ""groups"": ""Keyboard"",
                     ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -250,62 +228,7 @@ public partial class @MultiPlayer: IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/d"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Player1"",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""Arrows"",
-                    ""id"": ""832ea5c3-6fc8-413e-948d-6a4948b8453c"",
-                    ""path"": ""2DVector"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Move"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""up"",
-                    ""id"": ""31174c86-1c26-44ca-9f57-ea8c2ea45d60"",
-                    ""path"": ""<Keyboard>/upArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Player2"",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""down"",
-                    ""id"": ""792e80b4-e63f-41f3-a397-33a03eb2c158"",
-                    ""path"": ""<Keyboard>/downArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Player2"",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""left"",
-                    ""id"": ""8af2cb8d-426d-4f21-82bb-9983fd88f78c"",
-                    ""path"": ""<Keyboard>/leftArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Player2"",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""right"",
-                    ""id"": ""62c34483-c38b-4f2d-a104-e4b56284f634"",
-                    ""path"": ""<Keyboard>/rightArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Player2"",
+                    ""groups"": ""Keyboard"",
                     ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -327,18 +250,7 @@ public partial class @MultiPlayer: IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/q"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Player1"",
-                    ""action"": ""Join"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""5d1d9dbf-8c7d-4509-ad14-97d5d1114b40"",
-                    ""path"": ""<Keyboard>/m"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Player2"",
+                    ""groups"": ""Keyboard"",
                     ""action"": ""Join"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -366,23 +278,160 @@ public partial class @MultiPlayer: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""MiniGames"",
+            ""id"": ""e3762059-ce4b-4908-82cd-6dd716ddf28b"",
+            ""actions"": [
+                {
+                    ""name"": ""Flechas"",
+                    ""type"": ""Value"",
+                    ""id"": ""a66dfd27-2628-40ad-9ca3-134b2215bf00"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true,
+                    ""priority"": 0
+                },
+                {
+                    ""name"": ""Puntero"",
+                    ""type"": ""Value"",
+                    ""id"": ""9586b847-fb30-448d-b041-66fce5b25534"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true,
+                    ""priority"": 0
+                },
+                {
+                    ""name"": ""Accion"",
+                    ""type"": ""Button"",
+                    ""id"": ""4eef2149-483f-41c4-a2b4-67fc0ce0fe96"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false,
+                    ""priority"": 0
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""7687f7f9-2f02-4bfb-9e17-d7d343f5a41d"",
+                    ""path"": ""<Gamepad>/dpad"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Control"",
+                    ""action"": ""Flechas"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""2D Vector"",
+                    ""id"": ""ef7c4885-9165-490b-a973-a82e204ec583"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Flechas"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""b5001012-a6e2-420b-866e-5668ea33e9df"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Flechas"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""e2900b1b-71b4-4a1f-bc7f-9e4afffc81fd"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Flechas"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""bf2c6c37-4473-4a9e-a799-9f0309b322b8"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Flechas"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""4d409bf6-0fa3-43fa-8889-2f954b05db5f"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Flechas"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""91395808-e2e6-44b8-8c47-c2000372dede"",
+                    ""path"": ""<Mouse>/delta"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Puntero"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c8257ea5-bde9-4814-8ff3-118467533d00"",
+                    ""path"": ""<Gamepad>/rightStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Control"",
+                    ""action"": ""Puntero"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""175b5dbb-baee-48b0-9a0b-a5d6b9014a47"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard"",
+                    ""action"": ""Accion"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4d8ca02d-06ff-42cf-94b7-74f1db0351cc"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Control"",
+                    ""action"": ""Accion"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
         {
-            ""name"": ""Player1"",
-            ""bindingGroup"": ""Player1"",
-            ""devices"": [
-                {
-                    ""devicePath"": ""<Keyboard>"",
-                    ""isOptional"": false,
-                    ""isOR"": false
-                }
-            ]
-        },
-        {
-            ""name"": ""Player2"",
-            ""bindingGroup"": ""Player2"",
+            ""name"": ""Keyboard"",
+            ""bindingGroup"": ""Keyboard"",
             ""devices"": [
                 {
                     ""devicePath"": ""<Keyboard>"",
@@ -410,11 +459,17 @@ public partial class @MultiPlayer: IInputActionCollection2, IDisposable
         m_GamePlay_Interact = m_GamePlay.FindAction("Interact", throwIfNotFound: true);
         m_GamePlay_Ability = m_GamePlay.FindAction("Ability", throwIfNotFound: true);
         m_GamePlay_Join = m_GamePlay.FindAction("Join", throwIfNotFound: true);
+        // MiniGames
+        m_MiniGames = asset.FindActionMap("MiniGames", throwIfNotFound: true);
+        m_MiniGames_Flechas = m_MiniGames.FindAction("Flechas", throwIfNotFound: true);
+        m_MiniGames_Puntero = m_MiniGames.FindAction("Puntero", throwIfNotFound: true);
+        m_MiniGames_Accion = m_MiniGames.FindAction("Accion", throwIfNotFound: true);
     }
 
     ~@MultiPlayer()
     {
         UnityEngine.Debug.Assert(!m_GamePlay.enabled, "This will cause a leak and performance issues, MultiPlayer.GamePlay.Disable() has not been called.");
+        UnityEngine.Debug.Assert(!m_MiniGames.enabled, "This will cause a leak and performance issues, MultiPlayer.MiniGames.Disable() has not been called.");
     }
 
     /// <summary>
@@ -615,30 +670,135 @@ public partial class @MultiPlayer: IInputActionCollection2, IDisposable
     /// Provides a new <see cref="GamePlayActions" /> instance referencing this action map.
     /// </summary>
     public GamePlayActions @GamePlay => new GamePlayActions(this);
-    private int m_Player1SchemeIndex = -1;
+
+    // MiniGames
+    private readonly InputActionMap m_MiniGames;
+    private List<IMiniGamesActions> m_MiniGamesActionsCallbackInterfaces = new List<IMiniGamesActions>();
+    private readonly InputAction m_MiniGames_Flechas;
+    private readonly InputAction m_MiniGames_Puntero;
+    private readonly InputAction m_MiniGames_Accion;
     /// <summary>
-    /// Provides access to the input control scheme.
+    /// Provides access to input actions defined in input action map "MiniGames".
     /// </summary>
-    /// <seealso cref="UnityEngine.InputSystem.InputControlScheme" />
-    public InputControlScheme Player1Scheme
+    public struct MiniGamesActions
     {
-        get
+        private @MultiPlayer m_Wrapper;
+
+        /// <summary>
+        /// Construct a new instance of the input action map wrapper class.
+        /// </summary>
+        public MiniGamesActions(@MultiPlayer wrapper) { m_Wrapper = wrapper; }
+        /// <summary>
+        /// Provides access to the underlying input action "MiniGames/Flechas".
+        /// </summary>
+        public InputAction @Flechas => m_Wrapper.m_MiniGames_Flechas;
+        /// <summary>
+        /// Provides access to the underlying input action "MiniGames/Puntero".
+        /// </summary>
+        public InputAction @Puntero => m_Wrapper.m_MiniGames_Puntero;
+        /// <summary>
+        /// Provides access to the underlying input action "MiniGames/Accion".
+        /// </summary>
+        public InputAction @Accion => m_Wrapper.m_MiniGames_Accion;
+        /// <summary>
+        /// Provides access to the underlying input action map instance.
+        /// </summary>
+        public InputActionMap Get() { return m_Wrapper.m_MiniGames; }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Enable()" />
+        public void Enable() { Get().Enable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Disable()" />
+        public void Disable() { Get().Disable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.enabled" />
+        public bool enabled => Get().enabled;
+        /// <summary>
+        /// Implicitly converts an <see ref="MiniGamesActions" /> to an <see ref="InputActionMap" /> instance.
+        /// </summary>
+        public static implicit operator InputActionMap(MiniGamesActions set) { return set.Get(); }
+        /// <summary>
+        /// Adds <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <param name="instance">Callback instance.</param>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c> or <paramref name="instance"/> have already been added this method does nothing.
+        /// </remarks>
+        /// <seealso cref="MiniGamesActions" />
+        public void AddCallbacks(IMiniGamesActions instance)
         {
-            if (m_Player1SchemeIndex == -1) m_Player1SchemeIndex = asset.FindControlSchemeIndex("Player1");
-            return asset.controlSchemes[m_Player1SchemeIndex];
+            if (instance == null || m_Wrapper.m_MiniGamesActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_MiniGamesActionsCallbackInterfaces.Add(instance);
+            @Flechas.started += instance.OnFlechas;
+            @Flechas.performed += instance.OnFlechas;
+            @Flechas.canceled += instance.OnFlechas;
+            @Puntero.started += instance.OnPuntero;
+            @Puntero.performed += instance.OnPuntero;
+            @Puntero.canceled += instance.OnPuntero;
+            @Accion.started += instance.OnAccion;
+            @Accion.performed += instance.OnAccion;
+            @Accion.canceled += instance.OnAccion;
+        }
+
+        /// <summary>
+        /// Removes <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <remarks>
+        /// Calling this method when <paramref name="instance" /> have not previously been registered has no side-effects.
+        /// </remarks>
+        /// <seealso cref="MiniGamesActions" />
+        private void UnregisterCallbacks(IMiniGamesActions instance)
+        {
+            @Flechas.started -= instance.OnFlechas;
+            @Flechas.performed -= instance.OnFlechas;
+            @Flechas.canceled -= instance.OnFlechas;
+            @Puntero.started -= instance.OnPuntero;
+            @Puntero.performed -= instance.OnPuntero;
+            @Puntero.canceled -= instance.OnPuntero;
+            @Accion.started -= instance.OnAccion;
+            @Accion.performed -= instance.OnAccion;
+            @Accion.canceled -= instance.OnAccion;
+        }
+
+        /// <summary>
+        /// Unregisters <param cref="instance" /> and unregisters all input action callbacks via <see cref="MiniGamesActions.UnregisterCallbacks(IMiniGamesActions)" />.
+        /// </summary>
+        /// <seealso cref="MiniGamesActions.UnregisterCallbacks(IMiniGamesActions)" />
+        public void RemoveCallbacks(IMiniGamesActions instance)
+        {
+            if (m_Wrapper.m_MiniGamesActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        /// <summary>
+        /// Replaces all existing callback instances and previously registered input action callbacks associated with them with callbacks provided via <param cref="instance" />.
+        /// </summary>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c>, calling this method will only unregister all existing callbacks but not register any new callbacks.
+        /// </remarks>
+        /// <seealso cref="MiniGamesActions.AddCallbacks(IMiniGamesActions)" />
+        /// <seealso cref="MiniGamesActions.RemoveCallbacks(IMiniGamesActions)" />
+        /// <seealso cref="MiniGamesActions.UnregisterCallbacks(IMiniGamesActions)" />
+        public void SetCallbacks(IMiniGamesActions instance)
+        {
+            foreach (var item in m_Wrapper.m_MiniGamesActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_MiniGamesActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
         }
     }
-    private int m_Player2SchemeIndex = -1;
+    /// <summary>
+    /// Provides a new <see cref="MiniGamesActions" /> instance referencing this action map.
+    /// </summary>
+    public MiniGamesActions @MiniGames => new MiniGamesActions(this);
+    private int m_KeyboardSchemeIndex = -1;
     /// <summary>
     /// Provides access to the input control scheme.
     /// </summary>
     /// <seealso cref="UnityEngine.InputSystem.InputControlScheme" />
-    public InputControlScheme Player2Scheme
+    public InputControlScheme KeyboardScheme
     {
         get
         {
-            if (m_Player2SchemeIndex == -1) m_Player2SchemeIndex = asset.FindControlSchemeIndex("Player2");
-            return asset.controlSchemes[m_Player2SchemeIndex];
+            if (m_KeyboardSchemeIndex == -1) m_KeyboardSchemeIndex = asset.FindControlSchemeIndex("Keyboard");
+            return asset.controlSchemes[m_KeyboardSchemeIndex];
         }
     }
     private int m_ControlSchemeIndex = -1;
@@ -689,5 +849,34 @@ public partial class @MultiPlayer: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnJoin(InputAction.CallbackContext context);
+    }
+    /// <summary>
+    /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "MiniGames" which allows adding and removing callbacks.
+    /// </summary>
+    /// <seealso cref="MiniGamesActions.AddCallbacks(IMiniGamesActions)" />
+    /// <seealso cref="MiniGamesActions.RemoveCallbacks(IMiniGamesActions)" />
+    public interface IMiniGamesActions
+    {
+        /// <summary>
+        /// Method invoked when associated input action "Flechas" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnFlechas(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Puntero" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnPuntero(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Accion" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnAccion(InputAction.CallbackContext context);
     }
 }

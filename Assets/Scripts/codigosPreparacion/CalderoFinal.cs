@@ -16,7 +16,7 @@ public class CalderoFinal : MonoBehaviour
     public bool cambiarNivelAutomatico = true;
     public float tiempoEsperaCambioEscena = 3f;
 
-    [Header("Reinicio de Nivel (Derrota / Fin de Tiempo)")] // 👈 Nuevas opciones en el Inspector
+    [Header("Reinicio de Nivel (Derrota / Fin de Tiempo)")]
     public bool reiniciarAutomaticoEnDerrota = true;
     public float tiempoEsperaReiniciar = 3f;
 
@@ -56,8 +56,8 @@ public class CalderoFinal : MonoBehaviour
 
         if (textoProcesoRequerido != null && ordenActual.secuenciaRequerida != null)
         {
-            string secuenciaTexto = string.Join(" -> ", ordenActual.secuenciaRequerida);
-            textoProcesoRequerido.text = $"Proceso: {secuenciaTexto}";
+            string secuenciaTexto = string.Join(" - ", ordenActual.secuenciaRequerida);
+            textoProcesoRequerido.text = secuenciaTexto;
         }
 
         if (imagenIconoOrden != null && ordenActual.iconoResultado != null)
@@ -98,7 +98,7 @@ public class CalderoFinal : MonoBehaviour
     private void ActualizarTextoPuntos()
     {
         if (textoPuntajeTotal != null)
-            textoPuntajeTotal.text = $"Puntos: {puntajeTotal} / {puntosParaGanar}";
+            textoPuntajeTotal.text = puntajeTotal.ToString();
     }
 
     private void GanarPartida()
@@ -159,7 +159,7 @@ public class CalderoFinal : MonoBehaviour
 
     public void ReiniciarNivelActual()
     {
-        
+
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 

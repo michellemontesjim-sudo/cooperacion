@@ -584,9 +584,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerManager
   playerPrefabs:
   - {fileID: 1392351018378847443, guid: c53083ac40ff2f94eb8efc7c9aa08dc4, type: 3}
-  - {fileID: 1392351018378847443, guid: 72de3bac63dcdbc43b2db9234deef964, type: 3}
-  - {fileID: 1392351018378847443, guid: 72de3bac63dcdbc43b2db9234deef964, type: 3}
-  - {fileID: 1392351018378847443, guid: 72de3bac63dcdbc43b2db9234deef964, type: 3}
+  - {fileID: 1392351018378847443, guid: 83642a7df0e8ad547a85c4d8c2e506bb, type: 3}
+  - {fileID: 1392351018378847443, guid: e521612dd11e5fa48ae3dcd89e3bbb52, type: 3}
+  - {fileID: 1392351018378847443, guid: eb40bd8ee2ab64146b9da066aff9ad52, type: 3}
   spawnPoints:
   - {fileID: 1768511843}
   - {fileID: 84201751}

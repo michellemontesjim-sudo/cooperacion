@@ -236,6 +236,61 @@
                     "isPartOfComposite": false
                 },
                 {
+                    "name": "2D Vector",
+                    "id": "180d7d28-7a96-4d95-ad0c-d941f386abf6",
+                    "path": "2DVector",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "up",
+                    "id": "9b3f0881-e9e1-47b2-8d4e-e4b11f9ad02f",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "down",
+                    "id": "7b095972-89c4-4c05-a731-40d17de98126",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "left",
+                    "id": "14742394-ee6e-4ede-b203-09dfcad030b9",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "right",
+                    "id": "b7b39dd7-6dbb-4930-ba9d-fa105c184181",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
                     "name": "",
                     "id": "af444e3b-5011-4eb2-a69f-89fe7b9041a7",
                     "path": "<Keyboard>/q",
@@ -260,7 +315,7 @@
                 {
                     "name": "",
                     "id": "92273675-bdbb-42bd-9e46-d72774573837",
-                    "path": "<Gamepad>/start",
+                    "path": "<Gamepad>/rightTrigger",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Control",
@@ -270,11 +325,11 @@
                 },
                 {
                     "name": "",
-                    "id": "822a1fa1-a7c4-4e0e-b2e0-f37128582f3b",
-                    "path": "<DualShockGamepad>/start",
+                    "id": "cd6cbbe9-968f-4eed-9c32-103ac6a5077a",
+                    "path": "",
                     "interactions": "",
                     "processors": "",
-                    "groups": ";Control",
+                    "groups": "",
                     "action": "Join",
                     "isComposite": false,
                     "isPartOfComposite": false

@@ -23,7 +23,7 @@ public class CoopLevelInitializer : MonoBehaviour
         for (int i = 0; i < players.Count; i++)
         {
             PlayerInput player = players[i];
-            int index = player.playerIndex + 1;
+            int index = player.playerIndex;
 
             // 1. Mover al SpawnPoint 3D del mapa
             if (spawnPoints != null && index < spawnPoints.Length)

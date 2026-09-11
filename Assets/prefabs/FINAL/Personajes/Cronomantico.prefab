@@ -152,9 +152,6 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 6cfecc95cf728b44f85bfe4b644ea180, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 820187326273299272}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 6cfecc95cf728b44f85bfe4b644ea180, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 8721742321808605086}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 6cfecc95cf728b44f85bfe4b644ea180, type: 3}
       insertIndex: -1
@@ -179,19 +176,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 6cfecc95cf728b44f85bfe4b644ea180, type: 3}
   m_PrefabInstance: {fileID: 8399509868281773654}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &820187326273299272
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8669539684392600327}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 935764654becdc8409421d31db578112, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerController
-  speed: 10
 --- !u!114 &8721742321808605086
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -316,7 +300,7 @@ MonoBehaviour:
   gravity: -19.62
   holdPoint: {fileID: 3304842738955247356}
   prefabMinijuegoUnico: {fileID: 6649875921789158594, guid: 80787b2e8563c3246ae7ba710875e6ed, type: 3}
-  indiceJugadorCustom: -1
+  indiceJugadorCustom: 0
   rangoDeteccion: 1.5
 --- !u!143 &6376623223048387364
 CharacterController:

@@ -354,7 +354,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
   m_UseReflectionProbes: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
@@ -2668,8 +2668,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.3894495, y: 2.4510329, z: 1.9408784}
-  m_Center: {x: -0.19472726, y: 0.72551644, z: -0.13104257}
+  m_Size: {x: 1.978626, y: 2.825984, z: 3.2270374}
+  m_Center: {x: -0.19472738, y: 0.72551644, z: -0.13104263}
 --- !u!1 &1140313154
 GameObject:
   m_ObjectHideFlags: 0
@@ -3843,7 +3843,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: TRANSMUTADOR
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2981313321507919134, guid: dbae3ee5b499b8b43a2af73865f5dd1e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -4020,10 +4021,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1768511843}
     m_Modifications:
-    - target: {fileID: 4102342486852293363, guid: a533d8349403b8545b6d7f221ce9ba81, type: 3}
-      propertyPath: prefabMinijuegoUnico
-      value: 
-      objectReference: {fileID: 6649875921789158594, guid: 80787b2e8563c3246ae7ba710875e6ed, type: 3}
     - target: {fileID: 8294421894735583677, guid: a533d8349403b8545b6d7f221ce9ba81, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -5096,8 +5093,12 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -4682534829274748457, guid: a459ebbb95a30de4e95e830efe0d75b7, type: 3}
+      propertyPath: m_Mass
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: -4682534829274748457, guid: a459ebbb95a30de4e95e830efe0d75b7, type: 3}
       propertyPath: m_Constraints
-      value: 94
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8310714769937594337, guid: a459ebbb95a30de4e95e830efe0d75b7, type: 3}
       propertyPath: m_Name

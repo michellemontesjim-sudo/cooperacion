@@ -10,7 +10,7 @@ public class MesaJugador : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        // 💡 Busca el script en el objeto, en sus hijos o en sus padres
+        //Busca el script en el objeto, en sus hijos o en sus padres
         PlayerAlquimia player = other.GetComponent<PlayerAlquimia>()
             ?? other.GetComponentInChildren<PlayerAlquimia>()
             ?? other.GetComponentInParent<PlayerAlquimia>();

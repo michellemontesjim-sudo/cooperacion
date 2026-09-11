@@ -25,18 +25,18 @@ public class PuzzleTiempoReloj : MinijuegoBase
 
         agujaReloj.Rotate(0f, 0f, -velocidadGiro * Time.deltaTime);
 
-        // .triggered detecta si la acción "Interact" se presionó exactamente en este frame
+        // detecta si Interact se presionó en el frame
         if (playerInputVinculado != null && playerInputVinculado.actions["Interact"].triggered)
         {
-            // Calcula el ángulo Z invertido de la aguja
+            
             float anguloZ = (360f - agujaReloj.localEulerAngles.z) % 360f;
 
-            // ✅ CORREGIDO: Usamos la variable 'anguloZ' que acabamos de calcular
+            
             if (anguloZ >= anguloObjetivoMin && anguloZ <= anguloObjetivoMax)
             {
                 Debug.Log("¡Puzzle Completado!");
                 resuelto = true;
-                OnPuzzleExito?.Invoke(); // Esto destruye la UI y llama a ExecuteAbilityLogic()
+                OnPuzzleExito?.Invoke(); // llama a ExecuteAbilityLogic()
             }
             else
             {

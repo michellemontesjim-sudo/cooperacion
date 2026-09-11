@@ -11,9 +11,9 @@ public class Ingrediente : MonoBehaviour
     public List<TipoProceso> historialProcesos = new List<TipoProceso>();
 
     [Header("Prefabs de Siguiente Estado")]
-    public GameObject prefabAlTriturar;  // Ej: Prefab de "Pedazos de Gema"
-    public GameObject prefabAlCalentar;  // Ej: Prefab de "Gema Fundida"
-    public GameObject prefabAlCongelar;  // Ej: Prefab de "Gema Congelada"
+    public GameObject prefabAlTriturar;
+    public GameObject prefabAlCalentar;
+    public GameObject prefabAlCongelar;
 
     [Header("Efectos de Audio 3D")]
     public AudioClip sonidoEvolucion;
@@ -55,9 +55,9 @@ public class Ingrediente : MonoBehaviour
         return true;
     }
 
-    /// <summary>
+    
     /// Transforma el modelo 3D preservando y actualizando el historial acumulado.
-    /// </summary>
+    
     public GameObject Evolucionar(TipoProceso proceso)
     {
         GameObject siguientePrefab = null;
@@ -69,24 +69,24 @@ public class Ingrediente : MonoBehaviour
             case TipoProceso.Congelado: siguientePrefab = prefabAlCongelar; break;
         }
 
-        // Si no hay un prefab asignado para este proceso, mantiene el objeto actual y solo registra el paso
+        // no hay un prefab mantiene el objeto actual y solo registra el paso
         if (siguientePrefab == null)
         {
             RegistrarProceso(proceso);
             return gameObject;
         }
 
-        // 1. Instancia el nuevo modelo 3D en la misma posición
+        // Instancia nuevo modelo 3D en la misma posición
         GameObject nuevoObjeto = Instantiate(siguientePrefab, transform.position, transform.rotation);
 
-        // 2. Copia el historial previo al nuevo objeto y le agrega el proceso actual
+        // Copia el historial previo al nuevo objeto y le agrega el proceso actual
         if (nuevoObjeto.TryGetComponent<Ingrediente>(out var nuevoIngredienteScript))
         {
             nuevoIngredienteScript.historialProcesos = new List<TipoProceso>(this.historialProcesos);
             nuevoIngredienteScript.RegistrarProceso(proceso);
         }
 
-        // 3. Destruye la versión anterior
+        // Destruye versión anterior
         Destroy(gameObject);
 
         return nuevoObjeto;

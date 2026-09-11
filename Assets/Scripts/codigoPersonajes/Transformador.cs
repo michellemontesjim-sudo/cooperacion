@@ -20,7 +20,7 @@ public class Transformador : PlayerAlquimia
         Collider[] hits = Physics.OverlapSphere(holdPoint.position, rangoDeteccion);
         Debug.Log($"[Transformador] Objetos detectados en el área de interacción: {hits.Length}");
 
-        // CASO 1: LLEVAS UN OBJETO EN LA MANO
+        
         if (heldItem != null)
         {
             foreach (Collider hit in hits)
@@ -35,7 +35,7 @@ public class Transformador : PlayerAlquimia
             return;
         }
 
-        // CASO 2: TIENES LAS MANOS LIBRES
+        
         foreach (Collider hit in hits)
         {
             if (hit.TryGetComponent<MesaContenedora>(out var mesa) && mesa.EstaOcupada)
@@ -125,7 +125,7 @@ public class Transformador : PlayerAlquimia
 
         GameObject objetoViejo = heldItem;
 
-        // Evalúa si la secuencia del ingrediente coincide con la receta pedida
+        // si la secuencia del ingrediente coincide con la receta pedida
         if (ingrediente.ValidarSecuencia(ordenActual.secuenciaRequerida))
         {
             GameObject nuevoResultado = Instantiate(ordenActual.prefabResultadoFinal, holdPoint.position, holdPoint.rotation);

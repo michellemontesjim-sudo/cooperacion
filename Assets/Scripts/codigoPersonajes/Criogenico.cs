@@ -11,12 +11,12 @@ public class Criogenico : PlayerAlquimia
 
         Collider[] hits = Physics.OverlapSphere(holdPoint.position, rangoDeteccion);
 
-        // -------------------------------------------------------------
-        // CASO 1: LLEVAS UN OBJETO EN LA MANO
-        // -------------------------------------------------------------
+        
+        // objeto en mano
+        
         if (heldItem != null)
         {
-            // A. Buscar primero si hay una mesa libre enfrente
+            // busca si hay mesa
             foreach (Collider hit in hits)
             {
                 if (hit.TryGetComponent<MesaContenedora>(out var mesa) && !mesa.EstaOcupada)
@@ -29,17 +29,17 @@ public class Criogenico : PlayerAlquimia
                 }
             }
 
-            // B. Si no hay mesa libre enfrente, soltarlo directamente al suelo
+            // si no hay mesa se suelta en el suelo
             SoltarAlSuelo();
             return;
         }
 
-        // -------------------------------------------------------------
-        // CASO 2: TIENES LAS MANOS LIBRES
-        // -------------------------------------------------------------
+        
+        // en manos libres
+        
         foreach (Collider hit in hits)
         {
-            // A. Intentar tomar de una mesa ocupada
+            // toma objeto de mesa ocupada
             if (hit.TryGetComponent<MesaContenedora>(out var mesa) && mesa.EstaOcupada)
             {
                 heldItem = mesa.TomarObjeto();
@@ -47,7 +47,7 @@ public class Criogenico : PlayerAlquimia
                 return;
             }
 
-            // B. Intentar tomar un ingrediente suelto del suelo
+            // toma objeto del suelo
             if (hit.TryGetComponent<Ingrediente>(out var ingrediente))
             {
                 heldItem = ingrediente.gameObject;
@@ -64,7 +64,7 @@ public class Criogenico : PlayerAlquimia
         obj.transform.localRotation = Quaternion.identity;
 
         if (obj.TryGetComponent<Collider>(out var col))
-            col.enabled = false; // Se desactiva para no colisionar con el jugador mientras camina
+            col.enabled = false; //se desactiva para no colisionar con el jugador
 
         if (obj.TryGetComponent<Rigidbody>(out var rb))
             rb.isKinematic = true;
@@ -76,10 +76,10 @@ public class Criogenico : PlayerAlquimia
         heldItem.transform.position = holdPoint.position;
 
         if (heldItem.TryGetComponent<Collider>(out var col))
-            col.enabled = true; // Se reactiva para detectar interacciones futuras
+            col.enabled = true; // se reactiva para detectar interacciones futuras
 
         if (heldItem.TryGetComponent<Rigidbody>(out var rb))
-            rb.isKinematic = false; // Reactiva físicas para caer al suelo
+            rb.isKinematic = false; // reactiva físicas para caer al suelo
 
         heldItem = null;
     }

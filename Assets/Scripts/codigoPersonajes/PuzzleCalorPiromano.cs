@@ -12,7 +12,7 @@ public class PuzzleCalorPiromano : MinijuegoBase
     public float tiempoRequerido = 2f;
 
     private float tiempoAcumulado = 0f;
-    private bool resuelto = false; // 👈 1. Nueva bandera
+    private bool resuelto = false;
 
     public override void InicializarPuzzle(PlayerInput pInput)
     {
@@ -24,24 +24,24 @@ public class PuzzleCalorPiromano : MinijuegoBase
 
     private void Update()
     {
-        if (resuelto || barraCalor == null) return; // 👈 2. Evita ejecuciones extra al ganar
+        if (resuelto || barraCalor == null) return; //evita ejecuciones extra
 
-        // Disminuye la temperatura gradualmente
+        
         barraCalor.value -= enfriamientoVelocidad * Time.deltaTime;
 
-        // Aumenta la temperatura al presionar repetidamente
+        
         if (playerInputVinculado != null && playerInputVinculado.actions["Interact"].triggered)
         {
             barraCalor.value += incrementoPorClic;
         }
 
-        // Evalúa si la barra está en el punto correcto
+        // si la barra esta en la zona correcta
         if (barraCalor.value >= zonaCalienteMin && barraCalor.value <= zonaCalienteMax)
         {
             tiempoAcumulado += Time.deltaTime;
             if (tiempoAcumulado >= tiempoRequerido)
             {
-                resuelto = true; // 👈 3. Bloquea llamadas repetidas
+                resuelto = true;
                 Debug.Log("¡Puzzle de Calor Completado!");
                 OnPuzzleExito?.Invoke();
             }

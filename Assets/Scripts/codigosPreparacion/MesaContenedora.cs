@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class MesaContenedora:MonoBehaviour
 {
-    public Transform puntoColocacion; // GameObject vacío elevado sobre la mesa
+    public Transform puntoColocacion;
     private GameObject objetoDepositado;
 
     public bool EstaOcupada => objetoDepositado != null;

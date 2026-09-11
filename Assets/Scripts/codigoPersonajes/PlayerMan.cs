@@ -14,11 +14,12 @@ public class PlayerMan : MonoBehaviour
     public static PlayerMan Instance;
     public List<InputDevice> DispositivosUnidos => dispositivosUnidos;
 
+
     private void Awake()
     {
         Instance = this;
 
-        // Desactiva los personajes al iniciar la escena
+        // Desactiva personajes al iniciar la escena
         foreach (var p in personajesEnEscena)
         {
             if (p != null) p.gameObject.SetActive(false);
@@ -27,7 +28,7 @@ public class PlayerMan : MonoBehaviour
 
     private void Start()
     {
-        // Si venimos de un nivel anterior y hay controles guardados, unirlos automáticamente
+        // Si viene de un nivel anterior y hay controles guardados, unirlos
         if (DatosPartida.Instance != null && DatosPartida.Instance.DispositivosGuardados.Count > 0)
         {
             foreach (var dispositivo in DatosPartida.Instance.DispositivosGuardados)
@@ -41,7 +42,7 @@ public class PlayerMan : MonoBehaviour
     {
         if (jugadoresUnidos >= personajesEnEscena.Length) return;
 
-        // 1. Detección de Mandos (Gamepads)
+        
         foreach (var gamepad in Gamepad.all)
         {
             if ((gamepad.startButton.wasPressedThisFrame || gamepad.buttonSouth.wasPressedThisFrame)
@@ -51,7 +52,7 @@ public class PlayerMan : MonoBehaviour
             }
         }
 
-        // 2. Detección de Teclado (Espacio, Enter o tecla Q)
+        
         if (Keyboard.current != null)
         {
             bool teclaPresionada = Keyboard.current.spaceKey.wasPressedThisFrame ||
@@ -78,13 +79,13 @@ public class PlayerMan : MonoBehaviour
         PlayerInput pInput = personaje.GetComponent<PlayerInput>();
         if (pInput != null)
         {
-            // 1. Limpiar dispositivos asignados previamente
+            
             pInput.user.UnpairDevices();
 
-            // 2. Emparejar EXCLUSIVAMENTE este dispositivo al personaje
+            
             InputUser.PerformPairingWithDevice(dispositivo, pInput.user);
 
-            // 3. Asignar el esquema correcto
+            
             string scheme = (dispositivo is Keyboard) ? "Player1" : "Control";
             pInput.SwitchCurrentControlScheme(scheme, dispositivo);
         }

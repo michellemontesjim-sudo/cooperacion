@@ -119,7 +119,7 @@ public class CalderoFinal : MonoBehaviour
         }
     }
 
-    // 💡 Nueva lógica para manejar la derrota por tiempo
+    // derrota por tiempo
     public void EvaluarFinDeTiempo()
     {
         if (juegoTerminado) return;
@@ -141,16 +141,16 @@ public class CalderoFinal : MonoBehaviour
 
         Debug.Log("¡DERROTA! Se ha agotado el tiempo.");
 
-        // 1. Guardar mandos para no perder las asignaciones de jugador al reiniciar
+        // guardar mandos para no perder asignaciones
         GuardarControlesJugadores();
 
-        // 2. Mostrar la pantalla de derrota
+        // pantalla derrota
         if (panelDerrotaUI != null)
         {
             panelDerrotaUI.SetActive(true);
         }
 
-        // 3. Reiniciar el nivel actual automáticamente tras X segundos
+        // 3. reinicio de nivel
         if (reiniciarAutomaticoEnDerrota)
         {
             Invoke(nameof(ReiniciarNivelActual), tiempoEsperaReiniciar);
@@ -159,7 +159,7 @@ public class CalderoFinal : MonoBehaviour
 
     public void ReiniciarNivelActual()
     {
-        // Recarga la misma escena en la que se encuentra el jugador
+        
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 

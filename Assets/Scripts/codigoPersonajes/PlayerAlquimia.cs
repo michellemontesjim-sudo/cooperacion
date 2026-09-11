@@ -13,8 +13,8 @@ public abstract class PlayerAlquimia:MonoBehaviour
     private Vector3 velocityY;
 
     [Header("Interacción y Objetos")]
-    public Transform holdPoint;          // Accesible desde el inspector y subclases
-    protected GameObject heldItem;       // Accesible desde las clases hijas como Piromano
+    public Transform holdPoint;
+    protected GameObject heldItem;
 
     private CharacterController controller;
 
@@ -32,7 +32,7 @@ public abstract class PlayerAlquimia:MonoBehaviour
     public MesaJugador MesaActual { get; set; }
     protected virtual void Awake()
     {
-        // 🛡️ Busca los componentes en el objeto contenedor (Padre)
+        //busca los componentes en el objeto contenedor
         controller = GetComponentInParent<CharacterController>();
         myPlayerInput = GetComponentInParent<PlayerInput>();
 
@@ -40,7 +40,7 @@ public abstract class PlayerAlquimia:MonoBehaviour
             Debug.LogError($"[{gameObject.name}] No se encontró CharacterController en el objeto padre.");
     }
 
-    // En PlayerAlquimia.cs o en un componente selector
+    
     protected virtual void Start()
     {
         if (myPlayerInput != null)
@@ -60,7 +60,7 @@ public abstract class PlayerAlquimia:MonoBehaviour
 
     public void ConfigurarCuadranteUI(int playerIndex)
     {
-        this.indiceJugadorCustom = playerIndex; // 💡 Guarda el índice real (0, 1, 2, 3)
+        this.indiceJugadorCustom = playerIndex; //guarda indice real
 
         if (UIPuzzleManager.Instance != null)
         {
@@ -73,7 +73,7 @@ public abstract class PlayerAlquimia:MonoBehaviour
     // Callbacks del Input System
     public void OnMove(InputValue value)
     {
-        // Si está en el minijuego, fuerza el vector a cero e ignora la tecla
+        
         if (estaEnMinijuego)
         {
             moveInput = Vector2.zero;
@@ -95,7 +95,7 @@ public abstract class PlayerAlquimia:MonoBehaviour
 
     protected virtual void Update()
     {
-        // Si está resolviendo el puzzle, congela el movimiento pero mantiene la gravedad
+        // está resolviendo el puzzle congela el movimiento
         if (!estaEnMinijuego)
         {
             Vector3 movement = new Vector3(moveInput.x, 0f, moveInput.y);
@@ -106,7 +106,7 @@ public abstract class PlayerAlquimia:MonoBehaviour
             }
         }
 
-        // Aplicación de gravedad
+        
         if (controller.isGrounded && velocityY.y < 0) velocityY.y = -2f;
         velocityY.y += gravity * Time.deltaTime;
         controller.Move(velocityY * Time.deltaTime);
@@ -116,40 +116,40 @@ public abstract class PlayerAlquimia:MonoBehaviour
     {
         if (estaEnMinijuego) return;
 
-        // 🛡️ 1. VERIFICACIÓN DE LA MESA ASIGNADA
+        // verificación mesa asignada
         if (MesaActual == null || !MesaActual.PuedoProcesar())
         {
             Debug.LogWarning($"[{gameObject.name}] Solo puedes usar tu habilidad/minijuego frente a tu propia mesa.");
             return;
         }
 
-        // 2. Si existe el puzzle y el panel UI privado está configurado, lanza el minijuego
+        // lanza minijuego si existe puzzle
         if (prefabMinijuegoUnico != null && miPanelUI != null)
         {
             LanzarMinijuego();
         }
         else
         {
-            // Si no hay minijuego, ejecuta directamente la habilidad de la subclase
+            
             ExecuteAbilityLogic();
         }
     }
 
     private void LanzarMinijuego()
     {
-        // Si no tienes nada en la mano, ni siquiera abras el minijuego
+        // no se abre el puzzle sin nada en mano
         if (heldItem == null)
         {
             Debug.LogWarning("[PlayerAlquimia] No puedes usar la habilidad: ¡Las manos están vacías!");
             return;
         }
-        // Si miPanelUI no se asignó en el Lobby, lo reconecta con la escena de Juego actual
+        // miPanelUI no se asignó en el Lobby lo reconecta con la escena de Juego actual
         if (miPanelUI == null && myPlayerInput != null)
         {
             ConfigurarCuadranteUI(myPlayerInput.playerIndex);
         }
 
-        // Si aún así no existe el panel en la escena, aborta para no romper el juego
+        // si no existe aborta para no romper juego
         if (miPanelUI == null)
         {
             Debug.LogError($"[PlayerAlquimia] El Jugador {myPlayerInput?.playerIndex} no tiene un Canvas UI asignado en Nivel1.");
@@ -160,10 +160,10 @@ public abstract class PlayerAlquimia:MonoBehaviour
 
         estaEnMinijuego = true;
 
-        // 1. Instancia física en la escena activa
+        
         GameObject puzzleObj = Instantiate(prefabMinijuegoUnico);
 
-        // 2. Asigna el padre usando puzzleObj (NUNCA prefabMinijuegoUnico)
+        // asigna el padre usando puzzleObj
         puzzleObj.transform.SetParent(miPanelUI, false);
 
         MinijuegoBase minijuego = puzzleObj.GetComponent<MinijuegoBase>();
@@ -212,10 +212,10 @@ public abstract class PlayerAlquimia:MonoBehaviour
 
         if (heldItem.TryGetComponent<Ingrediente>(out var ingrediente))
         {
-            // Genera la nueva versión física del ingrediente
+            // nueva física ingrediente
             GameObject resultado = ingrediente.Evolucionar(proceso);
 
-            // Si cambió a un Prefab diferente, acóplalo de nuevo a la mano
+            // si se cambió el prefab que se acople
             if (resultado != heldItem)
             {
                 heldItem = resultado;
@@ -231,7 +231,7 @@ public abstract class PlayerAlquimia:MonoBehaviour
 
     protected abstract void TryPickOrDrop();
 
-    // Método abstracto que escribirán Triturador, Piromano, Criogenico y Telecinetico
+    
     protected abstract void ExecuteAbilityLogic();
 
 }

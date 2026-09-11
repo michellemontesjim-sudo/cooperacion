@@ -29,7 +29,7 @@ public class PuzzleLineasTransformador : MinijuegoBase
             nodosSecuencia[i].onClick.AddListener(() => PresionarNodo(index));
         }
 
-        // Enfocar el primer nodo activo al iniciar
+        
         EnfocarSiguienteNodoDisponible();
     }
 
@@ -60,7 +60,7 @@ public class PuzzleLineasTransformador : MinijuegoBase
     {
         if (indicePresionado == pasoEsperado)
         {
-            // Desactiva el nodo completado
+            // desactiva el nodo completado
             nodosSecuencia[indicePresionado].interactable = false;
             pasoEsperado++;
 
@@ -70,7 +70,7 @@ public class PuzzleLineasTransformador : MinijuegoBase
             }
             else
             {
-                // 💡 Restablece el foco al siguiente nodo activo para evitar que el EventSystem quede nulo
+                // restablece el foco al siguiente nodo activo
                 EnfocarSiguienteNodoDisponible();
             }
         }
@@ -84,7 +84,7 @@ public class PuzzleLineasTransformador : MinijuegoBase
     {
         if (EventSystem.current == null) return;
 
-        // Busca el primer nodo en la lista que continúe activo
+        // busca siguiente nodo que continúe activo
         for (int i = 0; i < nodosSecuencia.Length; i++)
         {
             if (nodosSecuencia[i] != null && nodosSecuencia[i].interactable)

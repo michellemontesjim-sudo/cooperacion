@@ -11,9 +11,9 @@ public class Criogenico : PlayerAlquimia
 
         Collider[] hits = Physics.OverlapSphere(holdPoint.position, rangoDeteccion);
 
-        
+
         // objeto en mano
-        
+
         if (heldItem != null)
         {
             // busca si hay mesa
@@ -34,9 +34,9 @@ public class Criogenico : PlayerAlquimia
             return;
         }
 
-        
+
         // en manos libres
-        
+
         foreach (Collider hit in hits)
         {
             // toma objeto de mesa ocupada
@@ -52,6 +52,18 @@ public class Criogenico : PlayerAlquimia
             {
                 heldItem = ingrediente.gameObject;
                 AgarrarEnMano(heldItem);
+                return;
+            }
+
+            if (hit.TryGetComponent<GeneradorIngredientes>(out var generador))
+            {
+                GameObject nuevo = generador.EntregarIngrediente(holdPoint);
+                if (nuevo != null)
+                {
+                    heldItem = nuevo;
+                    AgarrarEnMano(heldItem);
+                    Debug.Log("[Transformador] Objeto tomado de la CAJA exitosamente.");
+                }
                 return;
             }
         }
@@ -79,7 +91,7 @@ public class Criogenico : PlayerAlquimia
             col.enabled = true; // se reactiva para detectar interacciones futuras
 
         if (heldItem.TryGetComponent<Rigidbody>(out var rb))
-            rb.isKinematic = false; // reactiva físicas para caer al suelo
+            rb.isKinematic = false; // reactiva fï¿½sicas para caer al suelo
 
         heldItem = null;
     }

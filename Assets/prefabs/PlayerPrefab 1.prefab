@@ -98,6 +98,10 @@ PrefabInstance:
       value: Knight_02
       objectReference: {fileID: 0}
     - target: {fileID: 8506923735871224352, guid: 65c1a602d1c034f42b26ae7405cacb78, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8506923735871224352, guid: 65c1a602d1c034f42b26ae7405cacb78, type: 3}
       propertyPath: m_TagString
       value: Untagged
       objectReference: {fileID: 0}

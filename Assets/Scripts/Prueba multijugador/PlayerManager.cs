@@ -1,21 +1,41 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 public class PlayerManager : MonoBehaviour
 {
+
+    public static PlayerManager Instance;
+
     [SerializeField] private GameObject[] playerPrefabs;
     private List<PlayerInput> players = new List<PlayerInput>();
-    [SerializeField] private List<Transform> spawnPoints;
-
     private PlayerInputManager playerInputManager;
+
+    [Header("Ajustes del Lobby")]
+    public int minJugadoresParaIniciar = 1;
+    public string nombreEscenaNivel1 = "Nivel1";
+
+    [Header("Referencia UI")]
+    public LobbyUIManager uiManager;
 
 
     public List<PlayerInput> Players { get => players; set => players = value; }
 
     private void Awake()
     {
-        playerInputManager = FindAnyObjectByType<PlayerInputManager>();
+        playerInputManager = GetComponent<PlayerInputManager>();
+
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+            return;
+        }
     }
 
 
@@ -32,14 +52,32 @@ public class PlayerManager : MonoBehaviour
 
     public void AddPlayer(PlayerInput player)
     {
+
+        int index = player.playerIndex;
+
+        DontDestroyOnLoad(player.gameObject);
         players.Add(player);
         if (players.Count < playerPrefabs.Length)
         {
             playerInputManager.playerPrefab = playerPrefabs[players.Count];
         }
+        if (uiManager != null)
+        {
+            uiManager.ActualizarTarjetaConectada(index, player.currentControlScheme);
+        }
 
 
-        Transform playerParent = player.transform.parent;
-        playerParent.position = spawnPoints[players.Count - 1].position;
+
+    }
+
+    public List<PlayerInput> ObtenerJugadores() => players;
+
+    public void IniciarNivel()
+    {
+        if (players.Count >= minJugadoresParaIniciar)
+        {
+            if (playerInputManager != null) playerInputManager.DisableJoining();
+            SceneManager.LoadScene(nombreEscenaNivel1);
+        }
     }
 }

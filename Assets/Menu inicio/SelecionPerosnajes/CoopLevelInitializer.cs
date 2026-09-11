@@ -6,7 +6,7 @@ public class CoopLevelInitializer : MonoBehaviour
 {
     [Header("Spawns 3D (0:Tiempo, 1:Piromano, 2:Criogenico, 3:Transformador)")]
     [SerializeField] private Transform[] spawnPoints;
-     public static CoopLevelInitializer Instance;
+    public static CoopLevelInitializer Instance;
 
     private void Awake()
     {
@@ -16,9 +16,9 @@ public class CoopLevelInitializer : MonoBehaviour
 
     private void Start()
     {
-        if (LobbySelectionManager.Instance == null) return;
+        if (PlayerManager.Instance == null) return;
 
-        List<PlayerInput> jugadores = LobbySelectionManager.Instance.ObtenerJugadores();
+        List<PlayerInput> jugadores = PlayerManager.Instance.ObtenerJugadores();
 
         for (int i = 0; i < jugadores.Count; i++)
         {

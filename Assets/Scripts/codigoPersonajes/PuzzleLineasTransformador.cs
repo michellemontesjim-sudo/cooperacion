@@ -1,55 +1,97 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.InputSystem;
+using UnityEngine.EventSystems;
 
 public class PuzzleLineasTransformador : MinijuegoBase
 {
-    [Header("Configuración de Nodos")]
-    public Button[] nodosSecuencia; // Arrastra los botones en el orden correcto
+    [Header("ConfiguraciÃ³n de Nodos")]
+    public Button[] nodosSecuencia;
 
     private int pasoEsperado = 0;
+    private PlayerInput miPlayerInput;
 
     public override void InicializarPuzzle(PlayerInput pInput)
     {
         base.InicializarPuzzle(pInput);
+        miPlayerInput = pInput;
         pasoEsperado = 0;
 
         for (int i = 0; i < nodosSecuencia.Length; i++)
         {
-            int index = i; // Copia local para la clausura del evento
-
-            // Reasigna el texto del botón para indicar su número en la secuencia
+            int index = i;
             TextMeshProUGUI textoNodo = nodosSecuencia[i].GetComponentInChildren<TextMeshProUGUI>();
             if (textoNodo != null) textoNodo.text = (i + 1).ToString();
 
-            // Configura el estado del botón y limpia eventos previos
             nodosSecuencia[i].interactable = true;
             nodosSecuencia[i].onClick.RemoveAllListeners();
-
-            // Conecta el clic con la validación de su índice
             nodosSecuencia[i].onClick.AddListener(() => PresionarNodo(index));
+        }
+
+        // Enfocar el primer nodo activo al iniciar
+        EnfocarSiguienteNodoDisponible();
+    }
+
+    private void Update()
+    {
+        if (miPlayerInput != null && miPlayerInput.actions != null)
+        {
+            if (miPlayerInput.actions["Interact"].triggered)
+            {
+                GameObject seleccionado = EventSystem.current != null ? EventSystem.current.currentSelectedGameObject : null;
+
+                if (seleccionado != null)
+                {
+                    for (int i = 0; i < nodosSecuencia.Length; i++)
+                    {
+                        if (nodosSecuencia[i].gameObject == seleccionado && nodosSecuencia[i].interactable)
+                        {
+                            PresionarNodo(i);
+                            break;
+                        }
+                    }
+                }
+            }
         }
     }
 
     private void PresionarNodo(int indicePresionado)
     {
-        // Si el botón presionado coincide con el paso actual de la secuencia
         if (indicePresionado == pasoEsperado)
         {
-            nodosSecuencia[indicePresionado].interactable = false; // Desactiva el nodo completado
+            // Desactiva el nodo completado
+            nodosSecuencia[indicePresionado].interactable = false;
             pasoEsperado++;
 
-            // Si se completaron todos los nodos en orden ascendente
             if (pasoEsperado >= nodosSecuencia.Length)
             {
                 OnPuzzleExito?.Invoke();
             }
+            else
+            {
+                // ðŸ’¡ Restablece el foco al siguiente nodo activo para evitar que el EventSystem quede nulo
+                EnfocarSiguienteNodoDisponible();
+            }
         }
         else
         {
-            // Error en el orden: reinicia el minijuego o dispara fallo
             OnPuzzleFallo?.Invoke();
+        }
+    }
+
+    private void EnfocarSiguienteNodoDisponible()
+    {
+        if (EventSystem.current == null) return;
+
+        // Busca el primer nodo en la lista que continÃºe activo
+        for (int i = 0; i < nodosSecuencia.Length; i++)
+        {
+            if (nodosSecuencia[i] != null && nodosSecuencia[i].interactable)
+            {
+                EventSystem.current.SetSelectedGameObject(nodosSecuencia[i].gameObject);
+                break;
+            }
         }
     }
 }

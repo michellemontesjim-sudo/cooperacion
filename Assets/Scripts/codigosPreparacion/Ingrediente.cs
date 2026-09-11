@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+ï»¿using System.Collections.Generic;
 using UnityEngine;
 
 public enum TipoProceso { Ninguno, Triturado, Calentado, Congelado }
@@ -15,17 +15,34 @@ public class Ingrediente : MonoBehaviour
     public GameObject prefabAlCalentar;  // Ej: Prefab de "Gema Fundida"
     public GameObject prefabAlCongelar;  // Ej: Prefab de "Gema Congelada"
 
-    /// <summary>
-    /// Añade un proceso al historial acumulado del ingrediente.
-    /// </summary>
+    [Header("Efectos de Audio 3D")]
+    public AudioClip sonidoEvolucion;
+    public AudioClip sonidoSuelto;
+
+    private AudioSource audioSource;
+
+    private void Awake()
+    {
+        audioSource = GetComponent<AudioSource>();
+        audioSource.spatialBlend = 1.0f; 
+        audioSource.playOnAwake = true;
+        audioSource.loop = true;
+    }
+
+    private void Start()
+    {
+        if (!audioSource.isPlaying)
+        {
+            audioSource.Play();
+        }
+    }
+
     public void RegistrarProceso(TipoProceso nuevoProceso)
     {
         historialProcesos.Add(nuevoProceso);
     }
 
-    /// <summary>
-    /// Requerido por CalderoFinal.cs para comprobar si la secuencia coincide con la receta pedida.
-    /// </summary>
+    
     public bool ValidarSecuencia(List<TipoProceso> secuenciaEsperada)
     {
         if (secuenciaEsperada == null) return false;
@@ -59,7 +76,7 @@ public class Ingrediente : MonoBehaviour
             return gameObject;
         }
 
-        // 1. Instancia el nuevo modelo 3D en la misma posición
+        // 1. Instancia el nuevo modelo 3D en la misma posiciÃ³n
         GameObject nuevoObjeto = Instantiate(siguientePrefab, transform.position, transform.rotation);
 
         // 2. Copia el historial previo al nuevo objeto y le agrega el proceso actual
@@ -69,7 +86,7 @@ public class Ingrediente : MonoBehaviour
             nuevoIngredienteScript.RegistrarProceso(proceso);
         }
 
-        // 3. Destruye la versión anterior
+        // 3. Destruye la versiÃ³n anterior
         Destroy(gameObject);
 
         return nuevoObjeto;

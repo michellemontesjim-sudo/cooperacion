@@ -116,11 +116,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59cca03a6cf9b884fb76e9b3a39f7e5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Ingrediente
-  nombreIngrediente: Congelato
+  nombreIngrediente: Congelaton
   historialProcesos: 03000000
   prefabAlTriturar: {fileID: 0}
   prefabAlCalentar: {fileID: 0}
   prefabAlCongelar: {fileID: 0}
+  sonidoEvolucion: {fileID: 0}
+  sonidoSuelto: {fileID: 0}
 --- !u!54 &3370477856768123477
 Rigidbody:
   m_ObjectHideFlags: 0

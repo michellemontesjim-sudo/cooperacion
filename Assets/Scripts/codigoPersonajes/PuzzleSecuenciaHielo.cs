@@ -16,13 +16,14 @@ public class PuzzleSecuenciaHielo : MinijuegoBase
 
     public override void InicializarPuzzle(PlayerInput pInput)
     {
+        pInput.SwitchCurrentActionMap("MiniGames");
         base.InicializarPuzzle(pInput);
         secuenciaCorrecta = new int[iconosPantalla.Length];
         pasoActual = 0;
         resuelto = false;
         inputListo = false;
 
-        
+
         for (int i = 0; i < iconosPantalla.Length; i++)
         {
             secuenciaCorrecta[i] = Random.Range(0, 4);
@@ -30,7 +31,7 @@ public class PuzzleSecuenciaHielo : MinijuegoBase
             iconosPantalla[i].color = Color.white;
         }
 
-        
+
         Invoke(nameof(HabilitarInput), tiempoEsperaInicial);
     }
 
@@ -66,13 +67,14 @@ public class PuzzleSecuenciaHielo : MinijuegoBase
                 if (pasoActual >= secuenciaCorrecta.Length)
                 {
                     resuelto = true;
+                    playerInputVinculado.SwitchCurrentActionMap("GamePlay");
                     Debug.Log("¡Puzzle de Hielo Completado!");
                     OnPuzzleExito?.Invoke();
                 }
             }
             else
             {
-                
+
                 Debug.Log("Secuencia incorrecta. Reiniciando intento...");
                 pasoActual = 0;
 

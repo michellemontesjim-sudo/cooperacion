@@ -176,6 +176,10 @@ PrefabInstance:
       value: Nivel 1
       objectReference: {fileID: 0}
     - target: {fileID: 6721095563705556466, guid: 502ce0d5c02896a4e9d654cb94b6eebe, type: 3}
+      propertyPath: minJugadoresParaIniciar
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6721095563705556466, guid: 502ce0d5c02896a4e9d654cb94b6eebe, type: 3}
       propertyPath: 'playerPrefabs.Array.data[0]'
       value: 
       objectReference: {fileID: 8669539684392600327, guid: a533d8349403b8545b6d7f221ce9ba81, type: 3}
@@ -343,7 +347,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: a9da5a73785fa1040adea6e1f460835e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: be2df967ead061d41ba6ea98d832d4b3, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -632,7 +636,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 17f7c582dd9a8c84f9d52084b45ef79b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 134a861d12bc3d0448ae136c570356ae, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -861,7 +865,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 78f03f1e6553e954d8835e3905c0d850, type: 3}
+  m_Sprite: {fileID: 21300000, guid: edd6f808f7e46ec4ba72ccb1595a19f1, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1419,7 +1423,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Transmutador
+  m_text: Alquimista
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e54c0be105b648041919dfc27457f4e2, type: 2}
   m_sharedMaterial: {fileID: -6605549284500770589, guid: e54c0be105b648041919dfc27457f4e2, type: 2}
@@ -2768,8 +2772,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 8eb69fafe4f719b49bb2dd1a7358aaaa, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -2801,10 +2805,10 @@ RectTransform:
   - {fileID: 1356575993}
   m_Father: {fileID: 496834924}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 1003, y: -998}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 0, y: 132}
+  m_SizeDelta: {x: 191.8199, y: 49.5214}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1229884654
 GameObject:
@@ -3274,7 +3278,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Iniciar
+  m_text: Comenzar juego
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1e6e8049cda8da242b8b45bcfad8e0c1, type: 2}
   m_sharedMaterial: {fileID: 770140634277743562, guid: 1e6e8049cda8da242b8b45bcfad8e0c1, type: 2}
@@ -4304,7 +4308,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: d2c9e46d5f2e39647b428730c8224a60, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6643dba5afbd4c848b05824b2ad88965, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

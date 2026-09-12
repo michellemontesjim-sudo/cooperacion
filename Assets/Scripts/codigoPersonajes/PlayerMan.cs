@@ -53,17 +53,17 @@ public class PlayerMan : MonoBehaviour
         // }
 
 
-        if (Keyboard.current != null)
-        {
-            bool teclaPresionada = Keyboard.current.spaceKey.wasPressedThisFrame ||
-                                  Keyboard.current.enterKey.wasPressedThisFrame ||
-                                  Keyboard.current.qKey.wasPressedThisFrame;
+        // if (Keyboard.current != null)
+        // {
+        //     bool teclaPresionada = Keyboard.current.spaceKey.wasPressedThisFrame ||
+        //                           Keyboard.current.enterKey.wasPressedThisFrame ||
+        //                           Keyboard.current.qKey.wasPressedThisFrame;
 
-            if (teclaPresionada && !dispositivosUnidos.Contains(Keyboard.current))
-            {
-                UnirJugador(Keyboard.current);
-            }
-        }
+        //     if (teclaPresionada && !dispositivosUnidos.Contains(Keyboard.current))
+        //     {
+        //         UnirJugador(Keyboard.current);
+        //     }
+        // }
     }
 
     private void UnirJugador(InputDevice dispositivo)

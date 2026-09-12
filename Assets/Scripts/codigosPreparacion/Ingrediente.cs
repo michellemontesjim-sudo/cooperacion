@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-public enum TipoProceso { Ninguno, Triturado, Calentado, Congelado }
+public enum TipoProceso { Ninguno, Triturado, Calentado, Congelado, Transmutado }
 
 public class Ingrediente : MonoBehaviour
 {
@@ -14,6 +14,7 @@ public class Ingrediente : MonoBehaviour
     public GameObject prefabAlTriturar;
     public GameObject prefabAlCalentar;
     public GameObject prefabAlCongelar;
+    public GameObject prefabAlTransmutar;
 
     [Header("Efectos de Audio 3D")]
     public AudioClip sonidoEvolucion;
@@ -24,7 +25,7 @@ public class Ingrediente : MonoBehaviour
     private void Awake()
     {
         audioSource = GetComponent<AudioSource>();
-        audioSource.spatialBlend = 1.0f; 
+        audioSource.spatialBlend = 1.0f;
         audioSource.playOnAwake = true;
         audioSource.loop = true;
     }
@@ -42,7 +43,7 @@ public class Ingrediente : MonoBehaviour
         historialProcesos.Add(nuevoProceso);
     }
 
-    
+
     public bool ValidarSecuencia(List<TipoProceso> secuenciaEsperada)
     {
         if (secuenciaEsperada == null) return false;
@@ -55,9 +56,9 @@ public class Ingrediente : MonoBehaviour
         return true;
     }
 
-    
+
     /// Transforma el modelo 3D preservando y actualizando el historial acumulado.
-    
+
     public GameObject Evolucionar(TipoProceso proceso)
     {
         GameObject siguientePrefab = null;
@@ -67,6 +68,7 @@ public class Ingrediente : MonoBehaviour
             case TipoProceso.Triturado: siguientePrefab = prefabAlTriturar; break;
             case TipoProceso.Calentado: siguientePrefab = prefabAlCalentar; break;
             case TipoProceso.Congelado: siguientePrefab = prefabAlCongelar; break;
+            case TipoProceso.Transmutado: siguientePrefab = prefabAlTransmutar; break;
         }
 
         // no hay un prefab mantiene el objeto actual y solo registra el paso

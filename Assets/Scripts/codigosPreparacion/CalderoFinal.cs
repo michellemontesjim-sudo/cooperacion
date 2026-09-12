@@ -9,6 +9,7 @@ public class CalderoFinal : MonoBehaviour
 {
     [Header("Recetas y Meta de Puntos")]
     public OrdenReceta[] recetasPosibles;
+    public int resetasSimultaneas = 2;
     public int puntosParaGanar = 500;
 
     [Header("Transición de Nivel (Victoria)")]
@@ -21,14 +22,16 @@ public class CalderoFinal : MonoBehaviour
     public float tiempoEsperaReiniciar = 3f;
 
     [Header("Interfaz de Usuario (UI)")]
-    public TextMeshProUGUI textoNombreOrden;
-    public TextMeshProUGUI textoProcesoRequerido;
-    public Image imagenIconoOrden;
+    public TextMeshProUGUI textoProcesoRequerido1;
+    public TextMeshProUGUI textoProcesoRequerido2;
+    public Image imagenIconoOrden1;
+    public Image imagenIconoOrden2;
     public TextMeshProUGUI textoPuntajeTotal;
     public GameObject panelVictoriaUI;
     public GameObject panelDerrotaUI;
 
-    private OrdenReceta ordenActual;
+    private OrdenReceta ordenActual1;
+    private OrdenReceta ordenActual2;
     private int puntajeTotal = 0;
     private bool juegoTerminado = false;
 
@@ -48,20 +51,32 @@ public class CalderoFinal : MonoBehaviour
     {
         if (juegoTerminado || recetasPosibles == null || recetasPosibles.Length == 0) return;
 
-        int randomIndex = Random.Range(0, recetasPosibles.Length);
-        ordenActual = recetasPosibles[randomIndex];
+        ordenActual1 = recetasPosibles[Random.Range(0, recetasPosibles.Length)];
+        ordenActual2 = recetasPosibles[Random.Range(1, recetasPosibles.Length)];
 
-        if (textoNombreOrden != null)
-            textoNombreOrden.text = ordenActual.nombreReceta;
-
-        if (textoProcesoRequerido != null && ordenActual.secuenciaRequerida != null)
+        if (resetasSimultaneas >= 1)
         {
-            string secuenciaTexto = string.Join(" - ", ordenActual.secuenciaRequerida);
-            textoProcesoRequerido.text = secuenciaTexto;
+
+            if (textoProcesoRequerido1 != null && ordenActual1.secuenciaRequerida != null)
+            {
+                string secuenciaTexto1 = string.Join(" - ", ordenActual1.secuenciaRequerida);
+                textoProcesoRequerido1.text = secuenciaTexto1;
+            }
+
+            if (textoProcesoRequerido2 != null && ordenActual2.secuenciaRequerida != null)
+            {
+                string secuenciaTexto2 = string.Join(" - ", ordenActual2.secuenciaRequerida);
+                textoProcesoRequerido2.text = secuenciaTexto2;
+            }
+
+            if (imagenIconoOrden1 != null && ordenActual1.iconoResultado != null)
+                imagenIconoOrden1.sprite = ordenActual1.iconoResultado;
+
+            if (imagenIconoOrden2 != null && ordenActual2.iconoResultado != null)
+                imagenIconoOrden2.sprite = ordenActual2.iconoResultado;
         }
 
-        if (imagenIconoOrden != null && ordenActual.iconoResultado != null)
-            imagenIconoOrden.sprite = ordenActual.iconoResultado;
+
     }
 
     private void OnTriggerEnter(Collider other)
@@ -70,10 +85,25 @@ public class CalderoFinal : MonoBehaviour
 
         if (other.TryGetComponent<Ingrediente>(out var ingrediente))
         {
-            if (ingrediente.nombreIngrediente == ordenActual.nombreReceta &&
-                ingrediente.ValidarSecuencia(ordenActual.secuenciaRequerida))
+            if (CoincideConOrden(ingrediente, ordenActual1))
             {
-                puntajeTotal += ordenActual.puntosRecompensa;
+                puntajeTotal += ordenActual1.puntosRecompensa;
+                ActualizarTextoPuntos();
+
+                Destroy(other.gameObject);
+
+                if (puntajeTotal >= puntosParaGanar)
+                {
+                    GanarPartida();
+                }
+                else
+                {
+                    GenerarNuevaOrden();
+                }
+            }
+            else if (CoincideConOrden(ingrediente, ordenActual2))
+            {
+                puntajeTotal += ordenActual2.puntosRecompensa;
                 ActualizarTextoPuntos();
 
                 Destroy(other.gameObject);
@@ -93,6 +123,12 @@ public class CalderoFinal : MonoBehaviour
                 Destroy(other.gameObject);
             }
         }
+    }
+
+    private bool CoincideConOrden(Ingrediente ingrediente, OrdenReceta orden)
+    {
+        return ingrediente.nombreIngrediente == orden.nombreReceta &&
+               ingrediente.ValidarSecuencia(orden.secuenciaRequerida);
     }
 
     private void ActualizarTextoPuntos()
@@ -186,6 +222,11 @@ public class CalderoFinal : MonoBehaviour
 
     public OrdenReceta ObtenerOrdenActual()
     {
-        return ordenActual;
+        return ordenActual1;
+    }
+
+    public OrdenReceta ObtenerOrdenActual2()
+    {
+        return ordenActual2;
     }
 }

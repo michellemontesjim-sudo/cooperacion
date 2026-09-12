@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5125010707129076267}
   - component: {fileID: 433437894303329548}
   - component: {fileID: 5805462383558671532}
+  - component: {fileID: 5365037044529228079}
   - component: {fileID: 3150554701912179316}
   m_Layer: 0
   m_Name: Pot_01
@@ -91,6 +92,58 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &5365037044529228079
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2508803079818082220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf29ecd6ddde1d549b57d76d2293dfc6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CalderoFinal
+  recetasPosibles:
+  - nombreReceta: Club
+    secuenciaRequerida: 030000000200000001000000
+    prefabResultadoFinal: {fileID: 488402057137447417, guid: d7e537f195d946947bf2ae5303abf8b4, type: 3}
+    iconoResultado: {fileID: 21300000, guid: e38d9bf0924d37748b9fc2dce3958464, type: 3}
+    puntosRecompensa: 250
+  - nombreReceta: Hacha
+    secuenciaRequerida: 0100000002000000
+    prefabResultadoFinal: {fileID: 1831902198952363588, guid: 982ea369749b5354296620c80af640f3, type: 3}
+    iconoResultado: {fileID: 21300000, guid: 5f2004cc4043c6846acddc6bd9adc500, type: 3}
+    puntosRecompensa: 250
+  - nombreReceta: Sword
+    secuenciaRequerida: 010000000200000003000000
+    prefabResultadoFinal: {fileID: 6429434506539609472, guid: 57b7d9e5a4d61c64fb72bc88f82dc3b7, type: 3}
+    iconoResultado: {fileID: 21300000, guid: 068e01e41bd5fef44ae01ed207db0ac4, type: 3}
+    puntosRecompensa: 250
+  - nombreReceta: Saber
+    secuenciaRequerida: 010000000200000003000000
+    prefabResultadoFinal: {fileID: 7177139831227026696, guid: e0bd4abcc95b35545bccbffbca9ec71c, type: 3}
+    iconoResultado: {fileID: 21300000, guid: de8c68773411f9d498f51aa899be7a61, type: 3}
+    puntosRecompensa: 250
+  - nombreReceta: Cleaver
+    secuenciaRequerida: 010000000200000003000000
+    prefabResultadoFinal: {fileID: 6539064005104970789, guid: 73c0b62f9007d5c47b8016472488c5e9, type: 3}
+    iconoResultado: {fileID: 21300000, guid: dea0718086c198240a7cf716ec014037, type: 3}
+    puntosRecompensa: 250
+  resetasSimultaneas: 2
+  puntosParaGanar: 1000
+  nombreSiguienteNivel: Nivel 2
+  cambiarNivelAutomatico: 1
+  tiempoEsperaCambioEscena: 3
+  reiniciarAutomaticoEnDerrota: 1
+  tiempoEsperaReiniciar: 3
+  textoProcesoRequerido1: {fileID: 0}
+  textoProcesoRequerido2: {fileID: 0}
+  imagenIconoOrden1: {fileID: 0}
+  imagenIconoOrden2: {fileID: 0}
+  textoPuntajeTotal: {fileID: 0}
+  panelVictoriaUI: {fileID: 0}
+  panelDerrotaUI: {fileID: 0}
 --- !u!135 &3150554701912179316
 SphereCollider:
   m_ObjectHideFlags: 0

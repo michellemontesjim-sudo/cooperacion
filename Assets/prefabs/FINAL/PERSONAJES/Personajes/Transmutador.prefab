@@ -134,7 +134,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: ccec4c752f9687142bb6c2cc058fd2b6, type: 3}
       propertyPath: m_Name
-      value: TRANSMUTADOR
+      value: Transmutador
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: ccec4c752f9687142bb6c2cc058fd2b6, type: 3}
       propertyPath: m_TagString
@@ -272,7 +272,7 @@ MonoBehaviour:
   prefabMinijuegoUnico: {fileID: 5581486226698383517, guid: 033c8fffad0245d4eb875b8c39ab44bd, type: 3}
   indiceJugadorCustom: 3
   rangoDeteccion: 1.5
-  prefabBasura: {fileID: 127600965990556777, guid: c6237026bf13c344b8753ec226204a7b, type: 3}
+  prefabBasura: {fileID: 6476926422003433191, guid: f0e51738d4d01984dbe5539b64fe91cb, type: 3}
 --- !u!143 &24319170703127422
 CharacterController:
   m_ObjectHideFlags: 0

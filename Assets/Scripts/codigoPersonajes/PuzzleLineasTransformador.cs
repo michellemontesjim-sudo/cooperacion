@@ -29,7 +29,7 @@ public class PuzzleLineasTransformador : MinijuegoBase
             nodosSecuencia[i].onClick.AddListener(() => PresionarNodo(index));
         }
 
-        
+
         EnfocarSiguienteNodoDisponible();
     }
 
@@ -66,7 +66,7 @@ public class PuzzleLineasTransformador : MinijuegoBase
 
             if (pasoEsperado >= nodosSecuencia.Length)
             {
-                OnPuzzleExito?.Invoke();
+                OnPuzzleExito.Invoke();
             }
             else
             {

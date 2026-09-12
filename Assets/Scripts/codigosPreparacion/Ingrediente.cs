@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-public enum TipoProceso { Ninguno, Triturado, Calentado, Congelado, Transmutado }
+public enum TipoProceso { Ninguno, Triturado, Calentado, Congelado }
 
 public class Ingrediente : MonoBehaviour
 {
@@ -14,7 +14,6 @@ public class Ingrediente : MonoBehaviour
     public GameObject prefabAlTriturar;
     public GameObject prefabAlCalentar;
     public GameObject prefabAlCongelar;
-    public GameObject prefabAlTransmutar;
 
     [Header("Efectos de Audio 3D")]
     public AudioClip sonidoEvolucion;
@@ -68,7 +67,6 @@ public class Ingrediente : MonoBehaviour
             case TipoProceso.Triturado: siguientePrefab = prefabAlTriturar; break;
             case TipoProceso.Calentado: siguientePrefab = prefabAlCalentar; break;
             case TipoProceso.Congelado: siguientePrefab = prefabAlCongelar; break;
-            case TipoProceso.Transmutado: siguientePrefab = prefabAlTransmutar; break;
         }
 
         // no hay un prefab mantiene el objeto actual y solo registra el paso

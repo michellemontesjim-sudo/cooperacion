@@ -98,12 +98,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59cca03a6cf9b884fb76e9b3a39f7e5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Ingrediente
-  nombreIngrediente: Hacha
+  nombreIngrediente: Axe
   historialProcesos: 
   prefabAlTriturar: {fileID: 7516450137284194745, guid: 92475d20d29003a49a000c48cccefb8c, type: 3}
   prefabAlCalentar: {fileID: 8892436942546543725}
   prefabAlCongelar: {fileID: 520390258373047747, guid: b95db4bc810b2e74c853ec3277faeb54, type: 3}
-  prefabAlTransmutar: {fileID: 6476926422003433191, guid: f0e51738d4d01984dbe5539b64fe91cb, type: 3}
   sonidoEvolucion: {fileID: 0}
   sonidoSuelto: {fileID: 0}
 --- !u!65 &1007580909469270975

@@ -47,39 +47,39 @@ public class LobbySelectionManager : MonoBehaviour
         // Si a�n falta por unirse el Jugador 2 (�ndice 1) y presiona la tecla M en el teclado
         if (Keyboard.current != null && Keyboard.current.mKey.wasPressedThisFrame)
         {
-            UnirJugadorSecundarioTeclado();
+            // UnirJugadorSecundarioTeclado();
         }
     }
 
-    private void UnirJugadorSecundarioTeclado()
-    {
-        // Solo une a J2 si no se ha unido todav�a
-        if (jugadores.Count == 1 && prefabsRoles.Length > 1)
-        {
-            // Instancia a J2 forzando que comparta el teclado con J1
-            PlayerInput j2Input = PlayerInput.Instantiate(
-                prefabsRoles[1],
-                playerIndex: 1,
-                controlScheme: "Player2",
-                splitScreenIndex: -1,
-                pairWithDevice: Keyboard.current // Comp�rtelo con el teclado activo
-            );
+    // private void UnirJugadorSecundarioTeclado()
+    // {
+    //     // Solo une a J2 si no se ha unido todav�a
+    //     if (jugadores.Count == 1 && prefabsRoles.Length > 1)
+    //     {
+    //         // Instancia a J2 forzando que comparta el teclado con J1
+    //         PlayerInput j2Input = PlayerInput.Instantiate(
+    //             prefabsRoles[1],
+    //             playerIndex: 1,
+    //             controlScheme: "Player2",
+    //             splitScreenIndex: -1,
+    //             pairWithDevice: Keyboard.current // Comp�rtelo con el teclado activo
+    //         );
 
-            // Importante: No llamar a OnPlayerJoined manualmente aqu�, 
-            // PlayerInputManager o el evento lo registrar� si est� configurado,
-            // pero si usas Instantiate manual, lo a�adimos a la lista:
-            if (!jugadores.Contains(j2Input))
-            {
-                DontDestroyOnLoad(j2Input.gameObject);
-                jugadores.Add(j2Input);
+    //         // Importante: No llamar a OnPlayerJoined manualmente aqu�, 
+    //         // PlayerInputManager o el evento lo registrar� si est� configurado,
+    //         // pero si usas Instantiate manual, lo a�adimos a la lista:
+    //         if (!jugadores.Contains(j2Input))
+    //         {
+    //             DontDestroyOnLoad(j2Input.gameObject);
+    //             jugadores.Add(j2Input);
 
-                if (uiManager != null)
-                    uiManager.ActualizarTarjetaConectada(1, "Player2");
+    //             if (uiManager != null)
+    //                 uiManager.ActualizarTarjetaConectada(1, "Player2");
 
-                ActualizarPrefabSiguienteJugador();
-            }
-        }
-    }
+    //             ActualizarPrefabSiguienteJugador();
+    //         }
+    //     }
+    // }
 
     private void OnEnable()
     {
@@ -96,15 +96,15 @@ public class LobbySelectionManager : MonoBehaviour
 
         int index = pInput.playerIndex;
 
-        // Bloquear el Control Scheme espec�fico seg�n el jugador que se une
-        if (index == 0)
-        {
-            pInput.SwitchCurrentControlScheme("Keyboard");
-        }
-        else if (index >= 1)
-        {
-            pInput.SwitchCurrentControlScheme("Control");
-        }
+        // // Bloquear el Control Scheme espec�fico seg�n el jugador que se une
+        // if (index == 0)
+        // {
+        //     pInput.SwitchCurrentControlScheme("Keyboard");
+        // }
+        // else if (index >= 1)
+        // {
+        //     pInput.SwitchCurrentControlScheme("Control");
+        // }
 
         DontDestroyOnLoad(pInput.gameObject);
         jugadores.Add(pInput);

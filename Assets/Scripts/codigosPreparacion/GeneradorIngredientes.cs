@@ -1,13 +1,18 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class GeneradorIngredientes : MonoBehaviour
 {
     [Header("Prefab del Ingrediente a entregar")]
-    public GameObject prefabIngrediente;
+    public List<GameObject> prefabIngrediente = new List<GameObject>();
 
+    private int randomIndex;
 
     public GameObject EntregarIngrediente(Transform holdPoint)
     {
+
+        randomIndex = Random.Range(0, prefabIngrediente.Count);
+
         if (prefabIngrediente == null)
         {
             Debug.LogWarning($"El generador {gameObject.name} no tiene asignado un Prefab de Ingrediente.");
@@ -15,7 +20,7 @@ public class GeneradorIngredientes : MonoBehaviour
         }
 
         // Instancia el objeto como hijo de la mano del jugador
-        GameObject nuevoIngrediente = Instantiate(prefabIngrediente, holdPoint.position, holdPoint.rotation, holdPoint);
+        GameObject nuevoIngrediente = Instantiate(prefabIngrediente[randomIndex], holdPoint.position, holdPoint.rotation, holdPoint);
         nuevoIngrediente.transform.localPosition = Vector3.zero;
         nuevoIngrediente.transform.localRotation = Quaternion.identity;
 

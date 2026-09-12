@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class Transformador : PlayerAlquimia
 {
@@ -20,7 +21,7 @@ public class Transformador : PlayerAlquimia
         Collider[] hits = Physics.OverlapSphere(holdPoint.position, rangoDeteccion);
         Debug.Log($"[Transformador] Objetos detectados en el área de interacción: {hits.Length}");
 
-        
+
         if (heldItem != null)
         {
             foreach (Collider hit in hits)
@@ -35,7 +36,7 @@ public class Transformador : PlayerAlquimia
             return;
         }
 
-        
+
         foreach (Collider hit in hits)
         {
             if (hit.TryGetComponent<MesaContenedora>(out var mesa) && mesa.EstaOcupada)
@@ -116,36 +117,42 @@ public class Transformador : PlayerAlquimia
             return;
         }
 
-        OrdenReceta ordenActual = caldero.ObtenerOrdenActual();
-        if (ordenActual == null)
+        OrdenReceta orden1 = caldero.ObtenerOrdenActual();
+        OrdenReceta orden2 = caldero.ObtenerOrdenActual2();
+
+        OrdenReceta ordenCoincidente = null;
+        if (orden1 != null && ingrediente.ValidarSecuencia(orden1.secuenciaRequerida))
         {
-            Debug.LogWarning("[Transformador] El caldero no tiene ninguna orden activa en este momento.");
-            return;
+            ordenCoincidente = orden1;
+        }
+        else if (orden2 != null && ingrediente.ValidarSecuencia(orden2.secuenciaRequerida))
+        {
+            ordenCoincidente = orden2;
         }
 
-        GameObject objetoViejo = heldItem;
-
-        // si la secuencia del ingrediente coincide con la receta pedida
-        if (ingrediente.ValidarSecuencia(ordenActual.secuenciaRequerida))
+        if (ordenCoincidente != null)
         {
-            GameObject nuevoResultado = Instantiate(ordenActual.prefabResultadoFinal, holdPoint.position, holdPoint.rotation);
-            Destroy(objetoViejo);
+            GameObject nuevoResultado = Instantiate(
+                ordenCoincidente.prefabResultadoFinal,
+                holdPoint.position,
+                holdPoint.rotation
+            );
+
+            if (nuevoResultado.TryGetComponent<Ingrediente>(out var resultadoIngrediente))
+            {
+                resultadoIngrediente.historialProcesos =
+                    new List<TipoProceso>(ingrediente.historialProcesos);
+
+                resultadoIngrediente.nombreIngrediente = ingrediente.nombreIngrediente;
+            }
+
+            Destroy(heldItem);
             ActualizarObjetoEnMano(nuevoResultado);
-            Debug.Log("¡Transmutación Exitosa! El ingrediente es correcto.");
+            Debug.Log($"Transmutación exitosa para: {ordenCoincidente.nombreReceta}");
         }
         else
         {
-            if (prefabBasura != null)
-            {
-                GameObject basura = Instantiate(prefabBasura, holdPoint.position, holdPoint.rotation);
-                Destroy(objetoViejo);
-                ActualizarObjetoEnMano(basura);
-                Debug.LogWarning("Secuencia incorrecta. La transmutación generó basura.");
-            }
-            else
-            {
-                Debug.LogError("[Transformador] Falta asignar el 'Prefab Basura' en el Inspector.");
-            }
+            Debug.LogError("[Transformador] Falta asignar el 'Prefab Basura' en el Inspector.");
         }
     }
 }

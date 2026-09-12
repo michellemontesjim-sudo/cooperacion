@@ -117,27 +117,19 @@ public class Transformador : PlayerAlquimia
             return;
         }
 
-        OrdenReceta orden1 = caldero.ObtenerOrdenActual();
-        OrdenReceta orden2 = caldero.ObtenerOrdenActual2();
-
-        OrdenReceta ordenCoincidente = null;
-        if (orden1 != null && ingrediente.ValidarSecuencia(orden1.secuenciaRequerida))
+        OrdenReceta ordenActual = caldero.ObtenerOrdenActual();
+        if (ordenActual == null)
         {
-            ordenCoincidente = orden1;
-        }
-        else if (orden2 != null && ingrediente.ValidarSecuencia(orden2.secuenciaRequerida))
-        {
-            ordenCoincidente = orden2;
+            Debug.LogWarning("[Transformador] El caldero no tiene ninguna orden activa en este momento.");
+            return;
         }
 
-        if (ordenCoincidente != null)
-        {
-            GameObject nuevoResultado = Instantiate(
-                ordenCoincidente.prefabResultadoFinal,
-                holdPoint.position,
-                holdPoint.rotation
-            );
+        GameObject objetoViejo = heldItem;
 
+        // si la secuencia del ingrediente coincide con la receta pedida
+        if (ingrediente.ValidarSecuencia(ordenActual.secuenciaRequerida))
+        {
+            GameObject nuevoResultado = Instantiate(ordenActual.prefabResultadoFinal, holdPoint.position, holdPoint.rotation);
             if (nuevoResultado.TryGetComponent<Ingrediente>(out var resultadoIngrediente))
             {
                 resultadoIngrediente.historialProcesos =
@@ -145,14 +137,23 @@ public class Transformador : PlayerAlquimia
 
                 resultadoIngrediente.nombreIngrediente = ingrediente.nombreIngrediente;
             }
-
-            Destroy(heldItem);
+            Destroy(objetoViejo);
             ActualizarObjetoEnMano(nuevoResultado);
-            Debug.Log($"Transmutación exitosa para: {ordenCoincidente.nombreReceta}");
+            Debug.Log("¡Transmutación Exitosa! El ingrediente es correcto.");
         }
         else
         {
-            Debug.LogError("[Transformador] Falta asignar el 'Prefab Basura' en el Inspector.");
+            if (prefabBasura != null)
+            {
+                GameObject basura = Instantiate(prefabBasura, holdPoint.position, holdPoint.rotation);
+                Destroy(objetoViejo);
+                ActualizarObjetoEnMano(basura);
+                Debug.LogWarning("Secuencia incorrecta. La transmutación generó basura.");
+            }
+            else
+            {
+                Debug.LogError("[Transformador] Falta asignar el 'Prefab Basura' en el Inspector.");
+            }
         }
     }
 }

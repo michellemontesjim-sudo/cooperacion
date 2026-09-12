@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ControladorTiempo:PlayerAlquimia
+public class ControladorTiempo : PlayerAlquimia
 {
     public float rangoDeteccion = 1.5f;
 
@@ -12,10 +12,10 @@ public class ControladorTiempo:PlayerAlquimia
 
         Collider[] hits = Physics.OverlapSphere(holdPoint.position, rangoDeteccion);
 
-        
+
         if (heldItem != null)
         {
-            
+
             foreach (Collider hit in hits)
             {
                 if (hit.TryGetComponent<MesaContenedora>(out var mesa) && !mesa.EstaOcupada)
@@ -29,7 +29,7 @@ public class ControladorTiempo:PlayerAlquimia
                 }
             }
 
-            
+
             SoltarAlSuelo();
             return;
         }
@@ -37,7 +37,7 @@ public class ControladorTiempo:PlayerAlquimia
 
         foreach (Collider hit in hits)
         {
-            
+
             if (hit.TryGetComponent<MesaContenedora>(out var mesa) && mesa.EstaOcupada)
             {
                 heldItem = mesa.TomarObjeto();
@@ -46,12 +46,24 @@ public class ControladorTiempo:PlayerAlquimia
                 return;
             }
 
-            
+
             if (hit.TryGetComponent<Ingrediente>(out var ingrediente))
             {
                 heldItem = ingrediente.gameObject;
                 AgarrarEnMano(heldItem);
-                Debug.Log("¡Ingrediente tomado del suelo exitosamente!: " + heldItem.name);
+                Debug.Log("ï¿½Ingrediente tomado del suelo exitosamente!: " + heldItem.name);
+                return;
+            }
+
+            if (hit.TryGetComponent<GeneradorIngredientes>(out var generador))
+            {
+                GameObject nuevo = generador.EntregarIngrediente(holdPoint);
+                if (nuevo != null)
+                {
+                    heldItem = nuevo;
+                    AgarrarEnMano(heldItem);
+                    Debug.Log("[Transformador] Objeto tomado de la CAJA exitosamente.");
+                }
                 return;
             }
         }
@@ -88,13 +100,13 @@ public class ControladorTiempo:PlayerAlquimia
     {
         if (heldItem != null)
         {
-            
+
             ProcesarEvolucionEnMano(TipoProceso.Triturado);
-            Debug.Log("¡Ingrediente transformado con éxito por el Poder del Tiempo!");
+            Debug.Log("ï¿½Ingrediente transformado con ï¿½xito por el Poder del Tiempo!");
         }
         else
         {
-            Debug.LogWarning("El minijuego se completó, pero 'heldItem' sigue siendo nulo para el script del jugador.");
+            Debug.LogWarning("El minijuego se completï¿½, pero 'heldItem' sigue siendo nulo para el script del jugador.");
         }
     }
 }

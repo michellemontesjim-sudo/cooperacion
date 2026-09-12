@@ -7,6 +7,6 @@ public class MenuPrincipal : MonoBehaviour
 {
     public void JugarJuego()
     {
-        SceneManager.LoadScene("Seleccionar Personajes");
+        SceneManager.LoadScene("SeleccionPersonajes");
     }
 }

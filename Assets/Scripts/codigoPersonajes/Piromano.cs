@@ -11,10 +11,10 @@ public class Piromano : PlayerAlquimia
 
         Collider[] hits = Physics.OverlapSphere(holdPoint.position, rangoDeteccion);
 
-        
+
         if (heldItem != null)
         {
-            
+
             foreach (Collider hit in hits)
             {
                 if (hit.TryGetComponent<MesaContenedora>(out var mesa) && !mesa.EstaOcupada)
@@ -27,7 +27,7 @@ public class Piromano : PlayerAlquimia
                 }
             }
 
-            
+
             SoltarAlSuelo();
             return;
         }
@@ -35,7 +35,7 @@ public class Piromano : PlayerAlquimia
 
         foreach (Collider hit in hits)
         {
-            
+
             if (hit.TryGetComponent<MesaContenedora>(out var mesa) && mesa.EstaOcupada)
             {
                 heldItem = mesa.TomarObjeto();
@@ -43,11 +43,23 @@ public class Piromano : PlayerAlquimia
                 return;
             }
 
-            
+
             if (hit.TryGetComponent<Ingrediente>(out var ingrediente))
             {
                 heldItem = ingrediente.gameObject;
                 AgarrarEnMano(heldItem);
+                return;
+            }
+
+            if (hit.TryGetComponent<GeneradorIngredientes>(out var generador))
+            {
+                GameObject nuevo = generador.EntregarIngrediente(holdPoint);
+                if (nuevo != null)
+                {
+                    heldItem = nuevo;
+                    AgarrarEnMano(heldItem);
+                    Debug.Log("[Transformador] Objeto tomado de la CAJA exitosamente.");
+                }
                 return;
             }
         }
@@ -85,11 +97,11 @@ public class Piromano : PlayerAlquimia
         if (heldItem != null)
         {
             ProcesarEvolucionEnMano(TipoProceso.Calentado);
-            Debug.Log("¡Ingrediente transformado por el Pirómano!");
+            Debug.Log("ï¿½Ingrediente transformado por el Pirï¿½mano!");
         }
         else
         {
-            Debug.LogWarning("El minijuego finalizó, pero no se encontró ingrediente en la mano.");
+            Debug.LogWarning("El minijuego finalizï¿½, pero no se encontrï¿½ ingrediente en la mano.");
         }
     }
 }

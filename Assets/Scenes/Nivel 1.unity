@@ -3377,6 +3377,34 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5365037044529228079, guid: 616fdaa7dbff40e4f91c695be15f9f4f, type: 3}
+      propertyPath: panelDerrotaUI
+      value: 
+      objectReference: {fileID: 1391721119}
+    - target: {fileID: 5365037044529228079, guid: 616fdaa7dbff40e4f91c695be15f9f4f, type: 3}
+      propertyPath: panelVictoriaUI
+      value: 
+      objectReference: {fileID: 1219584068}
+    - target: {fileID: 5365037044529228079, guid: 616fdaa7dbff40e4f91c695be15f9f4f, type: 3}
+      propertyPath: imagenIconoOrden1
+      value: 
+      objectReference: {fileID: 519763775}
+    - target: {fileID: 5365037044529228079, guid: 616fdaa7dbff40e4f91c695be15f9f4f, type: 3}
+      propertyPath: imagenIconoOrden2
+      value: 
+      objectReference: {fileID: 2101414787}
+    - target: {fileID: 5365037044529228079, guid: 616fdaa7dbff40e4f91c695be15f9f4f, type: 3}
+      propertyPath: textoPuntajeTotal
+      value: 
+      objectReference: {fileID: 6793787}
+    - target: {fileID: 5365037044529228079, guid: 616fdaa7dbff40e4f91c695be15f9f4f, type: 3}
+      propertyPath: textoProcesoRequerido1
+      value: 
+      objectReference: {fileID: 1796399723}
+    - target: {fileID: 5365037044529228079, guid: 616fdaa7dbff40e4f91c695be15f9f4f, type: 3}
+      propertyPath: textoProcesoRequerido2
+      value: 
+      objectReference: {fileID: 2009439357}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -3384,9 +3412,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 668449171}
     m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 2508803079818082220, guid: 616fdaa7dbff40e4f91c695be15f9f4f, type: 3}
-      insertIndex: 3
-      addedObject: {fileID: 960096274}
     - targetCorrespondingSourceObject: {fileID: 2508803079818082220, guid: 616fdaa7dbff40e4f91c695be15f9f4f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 960096276}
@@ -3396,11 +3421,10 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 2508803079818082220, guid: 616fdaa7dbff40e4f91c695be15f9f4f, type: 3}
   m_PrefabInstance: {fileID: 960096272}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &960096274
+--- !u!114 &960096274 stripped
 MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 5365037044529228079, guid: 616fdaa7dbff40e4f91c695be15f9f4f, type: 3}
+  m_PrefabInstance: {fileID: 960096272}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 960096273}
   m_Enabled: 1
@@ -3408,46 +3432,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf29ecd6ddde1d549b57d76d2293dfc6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CalderoFinal
-  recetasPosibles:
-  - nombreReceta: Club
-    secuenciaRequerida: 030000000200000001000000
-    prefabResultadoFinal: {fileID: 488402057137447417, guid: d7e537f195d946947bf2ae5303abf8b4, type: 3}
-    iconoResultado: {fileID: 21300000, guid: e38d9bf0924d37748b9fc2dce3958464, type: 3}
-    puntosRecompensa: 250
-  - nombreReceta: Hacha
-    secuenciaRequerida: 0100000002000000
-    prefabResultadoFinal: {fileID: 1831902198952363588, guid: 982ea369749b5354296620c80af640f3, type: 3}
-    iconoResultado: {fileID: 21300000, guid: 5f2004cc4043c6846acddc6bd9adc500, type: 3}
-    puntosRecompensa: 250
-  - nombreReceta: Sword
-    secuenciaRequerida: 01000000020000000300000004000000
-    prefabResultadoFinal: {fileID: 6429434506539609472, guid: 57b7d9e5a4d61c64fb72bc88f82dc3b7, type: 3}
-    iconoResultado: {fileID: 21300000, guid: 068e01e41bd5fef44ae01ed207db0ac4, type: 3}
-    puntosRecompensa: 250
-  - nombreReceta: Saber
-    secuenciaRequerida: 01000000020000000300000004000000
-    prefabResultadoFinal: {fileID: 7177139831227026696, guid: e0bd4abcc95b35545bccbffbca9ec71c, type: 3}
-    iconoResultado: {fileID: 21300000, guid: de8c68773411f9d498f51aa899be7a61, type: 3}
-    puntosRecompensa: 250
-  - nombreReceta: Cleaver
-    secuenciaRequerida: 01000000020000000300000004000000
-    prefabResultadoFinal: {fileID: 6539064005104970789, guid: 73c0b62f9007d5c47b8016472488c5e9, type: 3}
-    iconoResultado: {fileID: 21300000, guid: dea0718086c198240a7cf716ec014037, type: 3}
-    puntosRecompensa: 250
-  resetasSimultaneas: 2
-  puntosParaGanar: 1000
-  nombreSiguienteNivel: Nivel 2
-  cambiarNivelAutomatico: 1
-  tiempoEsperaCambioEscena: 3
-  reiniciarAutomaticoEnDerrota: 1
-  tiempoEsperaReiniciar: 3
-  textoProcesoRequerido1: {fileID: 1796399723}
-  textoProcesoRequerido2: {fileID: 2009439357}
-  imagenIconoOrden1: {fileID: 519763775}
-  imagenIconoOrden2: {fileID: 2101414787}
-  textoPuntajeTotal: {fileID: 6793787}
-  panelVictoriaUI: {fileID: 1219584068}
-  panelDerrotaUI: {fileID: 1391721119}
 --- !u!4 &960096275 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5125010707129076267, guid: 616fdaa7dbff40e4f91c695be15f9f4f, type: 3}
@@ -4644,6 +4628,135 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2549834028263503120, guid: 3a29a837aed654f4d8e27b8e024be893, type: 3}
   m_PrefabInstance: {fileID: 1456802133}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1478076389
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1478076391}
+  - component: {fileID: 1478076390}
+  m_Layer: 0
+  m_Name: MusicaFondo
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!82 &1478076390
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1478076389}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 8300000, guid: 5b493f19749bdd94a8e93d558e3f4809, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 0.15
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!4 &1478076391
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1478076389}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.53524, y: -0.99, z: 2.77421}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1498268417
 GameObject:
   m_ObjectHideFlags: 0
@@ -6739,3 +6852,4 @@ SceneRoots:
   - {fileID: 833093421}
   - {fileID: 863975530}
   - {fileID: 1498268419}
+  - {fileID: 1478076391}

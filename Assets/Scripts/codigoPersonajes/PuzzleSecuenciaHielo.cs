@@ -45,9 +45,9 @@ public class PuzzleSecuenciaHielo : MinijuegoBase
         if (!inputListo || playerInputVinculado == null) return;
 
         //detecta pulsación en la tecla
-        if (playerInputVinculado.actions["Move"].triggered)
+        if (playerInputVinculado.actions["Flechas"].triggered)
         {
-            Vector2 dir = playerInputVinculado.actions["Move"].ReadValue<Vector2>();
+            Vector2 dir = playerInputVinculado.actions["Flechas"].ReadValue<Vector2>();
 
             // ignora movimientos imprecisos
             if (dir.magnitude < 0.5f) return;

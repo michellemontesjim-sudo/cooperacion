@@ -127,8 +127,7 @@ public class CalderoFinal : MonoBehaviour
 
     private bool CoincideConOrden(Ingrediente ingrediente, OrdenReceta orden)
     {
-        return ingrediente.nombreIngrediente == orden.nombreReceta &&
-               ingrediente.ValidarSecuencia(orden.secuenciaRequerida);
+        return ingrediente.ValidarSecuencia(orden.secuenciaRequerida);
     }
 
     private void ActualizarTextoPuntos()

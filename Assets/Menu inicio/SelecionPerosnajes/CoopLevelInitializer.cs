@@ -26,7 +26,7 @@ public class CoopLevelInitializer : MonoBehaviour
             int index = player.playerIndex;
 
             // 1. Mover al SpawnPoint 3D del mapa
-            if (spawnPoints != null && index < spawnPoints.Length)
+            if (spawnPoints != null && index < spawnPoints.Length && players != null)
             {
                 CharacterController cc = player.GetComponent<CharacterController>();
                 if (cc != null) cc.enabled = false;

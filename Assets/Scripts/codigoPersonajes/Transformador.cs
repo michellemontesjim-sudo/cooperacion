@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class Transformador : PlayerAlquimia
 {
@@ -20,7 +21,7 @@ public class Transformador : PlayerAlquimia
         Collider[] hits = Physics.OverlapSphere(holdPoint.position, rangoDeteccion);
         Debug.Log($"[Transformador] Objetos detectados en el área de interacción: {hits.Length}");
 
-        
+
         if (heldItem != null)
         {
             foreach (Collider hit in hits)
@@ -35,7 +36,7 @@ public class Transformador : PlayerAlquimia
             return;
         }
 
-        
+
         foreach (Collider hit in hits)
         {
             if (hit.TryGetComponent<MesaContenedora>(out var mesa) && mesa.EstaOcupada)
@@ -129,6 +130,13 @@ public class Transformador : PlayerAlquimia
         if (ingrediente.ValidarSecuencia(ordenActual.secuenciaRequerida))
         {
             GameObject nuevoResultado = Instantiate(ordenActual.prefabResultadoFinal, holdPoint.position, holdPoint.rotation);
+            if (nuevoResultado.TryGetComponent<Ingrediente>(out var resultadoIngrediente))
+            {
+                resultadoIngrediente.historialProcesos =
+                    new List<TipoProceso>(ingrediente.historialProcesos);
+
+                resultadoIngrediente.nombreIngrediente = ingrediente.nombreIngrediente;
+            }
             Destroy(objetoViejo);
             ActualizarObjetoEnMano(nuevoResultado);
             Debug.Log("¡Transmutación Exitosa! El ingrediente es correcto.");

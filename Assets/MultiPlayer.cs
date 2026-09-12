@@ -269,7 +269,7 @@ public partial class @MultiPlayer: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""822a1fa1-a7c4-4e0e-b2e0-f37128582f3b"",
-                    ""path"": ""<DualShockGamepad>/start"",
+                    ""path"": ""<DualShockGamepad>/rightTrigger"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Control"",
